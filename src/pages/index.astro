@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <pre>
+  _      ______  ___  __ __  _____  __  ___  ___  ____  ________  ____________
+ | | /| / / __ \/ _ \/ //_/ /  _/ |/ / / _ \/ _ \/ __ \/ ___/ _ \/ __/ __/ __/
+ | |/ |/ / /_/ / , _/ ,&lt;   _/ //    / / ___/ , _/ /_/ / (_ / , _/ _/_\ \_\ \  
+ |__/|__/\____/_/|_/_/|_| /___/_/|_/ /_/  /_/|_|\____/\___/_/|_/___/___/___/  
+  </pre>
+</Layout>
+
+<style>
+  input {
+    background: none;
+  }
+
+  pre {
+    font-size: 1rem;
+    font-weight: 500;
+    background: linear-gradient(
+        90deg, 
+        #8e44ad 0%, 
+        #c0392b 50%, 
+        #f39c12 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #c0392b;
+  }
+
+  /* disable the autofocus border/box shadow */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    /* To make the background color transparent */
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; 
+  }
+</style>
+

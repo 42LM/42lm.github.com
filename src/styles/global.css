@@ -1,0 +1,25 @@
+@layer base, utils, components;
+
+@import "@webtui/css";
+@import "@webtui/theme-catppuccin";
+@import "@webtui/plugin-nf";
+/* @import "@/styles/flexbox.css"; */
+
+@layer base {
+  :root {
+    --font-family: "JetBrains Mono", Menlo, Monaco, monospace,
+      "Symbols Nerd Font";
+    --font-size: 20px;
+    --line-height: 1.4;
+  }
+
+  body,
+  html {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+}
