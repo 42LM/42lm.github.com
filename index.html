@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- <html lang="en" data-webtui-theme="catppuccin-mocha"> -->
+<html lang="en" data-webtui-theme="catppuccin">
+<head>
+  <meta charset="UTF-8">
+  <title>42LM Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@webtui/plugin-nf@0.1.1/dist/index.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@webtui/css@0.0.5/dist/full.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@webtui/theme-catppuccin@0.0.3/dist/index.min.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <!-- TODO: separate css files -->
+  <style>
+@layer base {
+  :root {
+    --font-family: "JetBrains Mono", Menlo, Monaco, monospace, "Symbols Nerd Font";
+  }
+
+}
+html {
+  background-color: var(--crust);
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1lh 2ch;
+  container-type: inline-size;
+  container-name: navbar;
+  --box-border-color: var(--background1);
+  white-space: nowrap;
+}
+details {
+  div {
+    display: flex;
+    column-gap: 1ch;
+    --font-size: 40px;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+footer {
+  padding: 1lh 2ch;
+  --box-border-color: var(--background1);
+}
+h4 {
+  color: var(--blue);
+}
+h5 {
+  color: var(--lavender);
+}
+
+.header { 
+  display: flex;
+}
+.footer-love-letter-to-web-tui { 
+  display: flex;
+  justify-content: center;
+}
+.hover-element {
+}
+.hover-element:hover {
+  cursor: pointer;
+  text-decoration: none;
+  transform: scale(2.00);
+}
+
+row, column, [is-~="row"], [is-~="column"] {
+  &[gap-~="1"] {
+    column-gap: 1ch;
+    row-gap: 1lh;
+  }
+}
+row, column, [is-~="row"], [is-~="column"] {
+  &[align-$=center] {
+    justify-content: center;
+  }
+}
+row, column, [is-~="row"], [is-~="column"] {
+  &[align-^=center] {
+    align-items: center;
+  }
+}
+row, column, [is-~="row"], [is-~="column"] {
+  &[self-~=grow] {
+    flex-grow: 1;
+  }
+}
+[space-] {
+  &[space-~="px:1"] {
+    padding-left: 1ch;
+    padding-right: 1ch;
+  }
+}
+[space-] {
+  &[space-~="px:2"] {
+    padding-left: 2ch;
+    padding-right: 2ch;
+  }
+}
+[space-] {
+  &[space-~="py:1"] {
+    padding-top: 1lh;
+    padding-bottom: 1lh;
+  }
+}
+row, column, [is-~=row], [is-~=column] {
+  display: flex;
+}
+column, [is-~=column] {
+  flex-direction: column;
+}
+row, column, [is-~="row"], [is-~="column"] {
+  &[gap-~="1"] {
+    column-gap: 1ch;
+    row-gap: 1lh;
+  }
+}
+column, [is-~=column] {
+  flex-direction: column;
+}
+/* overwrite popver underline */
+details[is-=popover] summary:focus {
+  text-decoration: none;
+}
+.details-with-marker {
+  details {
+    &[open] {
+      & summary {
+        &::marker {
+            content: " ";
+        }
+      }
+    }
+  }
+}
+
+#main {
+  background-color: var(--crust);
+  padding: 1lh 2ch;
+}
+#section {
+  background-color: var(--background0);
+  width: 100%;
+  max-width: 84ch;
+}
+#home-link {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--foreground1);
+}
+#buttons { 
+  display: flex; 
+  justify-content: flex-end; 
+}
+#links {
+  display: flex;
+  row-gap: 2ch;
+  column-gap: 1lh;
+}
+#links {
+  a {
+    <!-- display: inline-flex; -->
+    gap: 1ch;
+    text-decoration: none;
+    color: var(--foreground2);
+  }
+}
+#work-resp {
+  --font-size: 16px;
+}
+
+#rust::before {
+  content: "\e68b"; 
+  color: #F75114;
+}
+#go::before {
+  content: "\e65e"; 
+  color: #70D7E6;
+}
+#zig::before {
+  content: "\e6a9"; 
+  color: #F7A41D;
+}
+#ruby::before {
+  content: "\e791"; 
+  color: #B1200F;
+}
+#js::before {
+  content: "\e781"; 
+  color: #F0DC56;
+}
+#java::before {
+  content: "\e738"; 
+  color: #497590;
+}
+#c::before {
+  content: "\e61e"; 
+  color: #0F5E9F;
+}
+#intro::before {
+  content: "\eda4"; 
+}
+#tool::before {
+  content: "\f18d"; 
+}
+#heart::before {
+  content: "\f004";
+  color: var(--red);
+}
+#pr::before {
+  content: "\e726";
+}
+#no-cookies::before {
+  content: "\f16ea";
+  color: var(--red);
+}
+  
+
+@media (max-width: 850px) {
+  #work-resp {
+    --font-size: 12px;
+  }
+  .hover-element:hover {
+    transform: scale(1.50);
+  }
+}
+@media (max-width: 600px) {
+  #blogs {
+    display: none;
+  }
+  #github {
+    display: none;
+  }
+  #work-resp {
+    --font-size: 9px;
+  }
+  details {
+    div {
+      --font-size: 20px;
+    }
+  }
+  #links {
+    a {
+      background-color: var(--background1);
+      padding: 0 1ch;
+    }
+  }
+  .hover-element:hover {
+    transform: scale(1.00);
+  }
+}
+  </style>
+</head>
+<body>
+  <row self-="grow" align-="center" id="main">
+    <column is-="column" data-webtui-theme="catppuccin-mocha">
+      <column gap-="1" space-="px:2 py:1" id="section">
+
+        <nav box-="square">
+          <a href="/" id="home-link">
+            <span>{</span><span style="color: var(--mauve)">4</span><span style="color: var(--peach)">2</span><span style="color: var(--green)">L</span><span style="color: var(--green)">M</span></span><span>:</span><span style="color: var(--blue)">#?</span><span>}</span>
+          </a>
+          <details id="hover-details" class="hover-element" is-="popover" position-="bottom baseline-left">
+            <summary><span id="no-cookies"></span></summary>
+            <span style="background-color: var(--background1); padding: 1lh 1ch; color: var(--red); font-size: 1ch;">Cookie-free page 🍿🎉🥳!!!</span>
+          </details>
+          <row id="links">
+            <!-- TODO: blog posts in markdown -->
+            <!-- <a href="https://google.com" target="_blank" rel="noopener noreferrer"> -->
+            <!--   <span></span> -->
+            <!--   <span id="blogs">Blogs</span> -->
+            <!-- </a> -->
+            <a href="https://github.com/42LM" target="_blank" rel="noopener noreferrer">
+              <span>&#xF09B;</span>
+              <span id="github">Github</span>
+            </a>
+          </row>
+        </nav>
+
+        <column gap-="1">
+          <!-- <header is-="column" gap-="1" space-="px:1"> -->
+          <header is-="column" space-="px:1">
+            <h1><strong>Welcome</strong>, str&#xEB1F;nger!</h1>
+              <h2>This is my tiny homepage, hope you enjoy your stay</h2>
+              <h3>Introduction</h3>
+              <p style="font-size: 1ch; color: var(--foreground2)">First of all I do not like to define myself by the work I have done. I define myself by the work I want to do. Skills can be taught, personality is inherent. I prefer to keep learning, continue challenging myself, and do interesting things that matter.</p>
+              <br />
+              
+            <row is-="column" gap-="1">
+              <div box-="square contain:none">
+                <div class="header">
+                  <span is-="badge" variant-="background0"><h3>About me</h3></span>
+                </div>
+                <div id="content">
+                  <row is-="column" gap-="1" space-="px:2 py:1">
+                    <p>My <span is-="badge" cap-="square slant-bottom" variant-="background1" style="color: var(--green)">name is</span> Lukas aka <span is-="badge" cap-="slant-top square" variant-="background1" style="color: var(--green)">Luke</span> nice to meet you stranger. Senior software engineer surfing the waves of the vast IT ocean.</p>
+                    <p>Fueled by high energy levels and boundless enthusiasm, I am easily inspired and more than willing to follow my fascinations wherever they take me. Because I love what I do, I have a steady source of motivation that drives me to do my best. This passion always leads me to challenge myself daily and learn new skills that help me to do better work. I am never satisfied to just come up with ideas. Instead I have an almost impulsive need to act on them. Last but not least I have a natural ability to entertain and inspire.</p>
+                    <p>My professional enthusiasm is centered on the full lifecycle of high-performance backend systems – from initial concept development and architectural design, through to the nuances of low-level programming and the critical application of cybersecurity principles.</p>
+                  </row>
+                </div>
+                <div class="header" style="justify-content: flex-end">
+                  <span is-="badge" variant-="background0" style="align-self: flex-end"><span id="intro"></span></span>
+                </div>
+              </div>
+
+          </header>
+        </column>
+
+        <!-- TODO: work -->
+        <!-- <column space-="px:1"> -->
+        <!--   <div box-="square contain:none"> -->
+        <!--     <div class="header"> -->
+        <!--         <span is-="badge" variant-="background0"><h3>Work</h3></span> -->
+        <!--     </div> -->
+        <!--     <div id="content"> -->
+        <!--       <row is-="column" gap-="1" space-="px:2 py:1"> -->
+        <!--       </row> -->
+        <!--     </div> -->
+        <!--     <div class="header" style="justify-content: flex-end"> -->
+        <!--       <span is-="badge" variant-="background0" style="align-self: flex-end"><span id="pr"></span></span> -->
+        <!--     </div> -->
+        <!--   </div> -->
+        <!-- </column> -->
+
+        <!-- glimpse into my day -->
+        <column space-="px:1">
+          <div box-="square contain:none">
+            <div class="header">
+                <span is-="badge" variant-="background0"><h3>A glimpse into my day</h3></span>
+            </div>
+            <div id="content">
+              <row is-="column" gap-="1" space-="px:2 py:1">
+                <details class="details-with-marker" style="color: var(--foreground0)">
+                  <summary><h4 style="display: inline">Responsibilities</h4></summary>
+                  <ul marker-="open tree" id="work-resp">
+                    <li>Build Robust & Scalable Systems</li>
+                    <li>Lead Technical Design, Prototyping & Implementation</li>
+                    <li>Engineering for Peak Performance & Efficiency</li>
+                    <li>Championing Developer-Centric APIs & Ecosystems</li>
+                    <li>Advanced System Observability</li>
+                    <li>Pragmatic Innovation with Data Technologies & System Architecture</li>
+                    <li>Security as a Foundational Pillar (Security by Design)</li>
+                    <li>Elevating Engineering Craft & Mentorship</li>
+                  </ul>
+                </details>
+
+                <!-- TODO: use grid -->
+                <details class="details-with-marker" style="color: var(--foreground0)">
+                  <summary><h4 style="display: inline">Programming languages (currently working with)</h4></summary>
+                  <div gap-="1">
+                    <p><a href="https://www.rust-lang.org/" target="_blank" rel="noopener noreferrer"><span id="rust"></span></a></p>
+                    <p><a href="https://go.dev/" target="_blank" rel="noopener noreferrer"><span id="go"></span></a></p>
+                    <p><a href="https://ziglang.org/" target="_blank" rel="noopener noreferrer"><span id="zig"></span></a></p>
+                  </div>
+                  <column gap-="1">
+                  <details class="details-with-marker" style="color: var(--foreground0)">
+                    <summary><h5 style="display: inline">Honorable mentions (have worked with)</h5></summary>
+                    <div>
+                      <p><a href="https://www.c-language.org/" target="_blank" rel="noopener noreferrer"><span id="c"></span></a></p>
+                      <p><a href="https://www.ruby-lang.org/en/" target="_blank" rel="noopener noreferrer"><span id="ruby"></span></a></p>
+                      <p><a href="https://www.java.com/" target="_blank" rel="noopener noreferrer"><span id="java"></span></a></p>
+                      <p><a href="https://ecma-international.org/technical-committees/tc39/ target="_blank" rel="noopener noreferrer""><span id="js"></span></a></p>
+                    </div>
+                  </details>
+                  </column>
+                </details>
+              </row>
+            </div>
+            <div class="header" style="justify-content: flex-end">
+              <span is-="badge" variant-="background0" style="align-self: flex-end"><span id="tool"></span></span>
+            </div>
+          </div>
+        </column>
+
+        <footer box-="square contain:none">
+
+          <!-- <br /> -->
+          <!--  -->
+          <!-- <div id="content"> -->
+          <!--   <p>Lorem ipsum dolor sit amet sit dolor ipsum lorem idk i dont speak french</p> -->
+          <!-- </div> -->
+          <!--  -->
+          <!-- <br /> -->
+
+          <div class="footer-love-letter-to-web-tui">
+            <span is-="badge" variant-="background0" style="font-size: 1ch;">
+              Made with&nbsp;
+              <a href="https://github.com/webtui/webtui" id="home-link" target="_blank" rel="noopener noreferrer">
+                &lt;&sol;<span style="color: var(--green)">#&gt;</span>WebTUI
+              </a>
+              &nbsp;and lots of&nbsp;<span id="heart"></span>
+            </span>
+          </div>
+        </footer>
+
+        <!-- <footer box-="square" style="font-size: 1ch;"> -->
+        <!--   <div style="display: flex; justify-content: space-between; width: 100%; padding-bottom: 25px"> -->
+        <!--     <ul marker-="tree"> -->
+        <!--       <li>List</li> -->
+        <!--       <li>With</li> -->
+        <!--       <li><code>tree</code> Markers</li> -->
+        <!--     </ul> -->
+        <!--     <ul marker-="tree"> -->
+        <!--       <li>List</li> -->
+        <!--       <li>With</li> -->
+        <!--       <li><code>tree</code> Markers</li> -->
+        <!--     </ul> -->
+        <!--     <ul marker-="tree"> -->
+        <!--       <li>List</li> -->
+        <!--       <li>With</li> -->
+        <!--       <li><code>tree</code> Markers</li> -->
+        <!--     </ul> -->
+        <!--   </div> -->
+        <!--   <row> -->
+        <!--     <span> -->
+        <!--       Made with -->
+        <!--       <a href="https://github.com/webtui/webtui" id="home-link" target="_blank" rel="noopener noreferrer"> -->
+        <!--         &#38;lt;&#38;sol;<span style="color: var(--green)">#&#38;gt;</span>WebTUI -->
+        <!--       </a> -->
+        <!--       and lots of <span style="color: var(--red)"></span> -->
+        <!--     </span> -->
+        <!--   </row> -->
+        <!-- </footer> -->
+
+      </column>
+    </column>
+  </row>
+  <script>
+const detailsElement = document.getElementById('hover-details');
+
+if (detailsElement) {
+  detailsElement.addEventListener('mouseenter', () => {
+    detailsElement.open = true;
+  });
+  detailsElement.addEventListener('mouseleave', () => {
+    detailsElement.open = false;
+  });
+}
+  </script>
+</body>
+</html>
