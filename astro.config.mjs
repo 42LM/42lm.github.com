@@ -1,0 +1,46 @@
+// // @ts-check
+// import { defineConfig } from 'astro/config';
+// import mdx from '@astrojs/mdx';
+// import sitemap from '@astrojs/sitemap';
+//
+// // https://astro.build/config
+// export default defineConfig({
+// 	site: 'https://example.com',
+// 	integrations: [mdx(), sitemap()],
+// });
+
+// @ts-check
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+// import rehypeTabIndex from '@webtui/rehype-tabindex';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://42lm.github.io/',
+  compressHTML: false,
+  redirects: {
+    '/docs': '/start/intro',
+    '/start': '/start/intro',
+  },
+  markdown: {
+    rehypePlugins: [rehypeHeadingIds],
+    shikiConfig: {
+      theme: 'catppuccin-mocha',
+      wrap: true,
+    },
+  },
+  integrations: [mdx({ extendMarkdownConfig: true })],
+  vite: {
+    ssr: {
+      noExternal: [
+        '@webtui/css',
+        '@webtui/theme-catppuccin',
+        // '@webtui/theme-nord',
+        // '@webtui/theme-gruvbox',
+        '@webtui/plugin-nf',
+      ],
+    },
+  },
+});
+
