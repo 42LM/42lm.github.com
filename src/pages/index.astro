@@ -168,8 +168,6 @@ import Welcome from '@/components/Welcome.astro';
     const commandHistory = document.getElementById('command-history') as HTMLInputElement;
     const selectableChildren = Array.from(commandHistory.children).slice(2);
 
-    console.log(selectableChildren)
-
     const welcome = document.getElementById('welcome') as HTMLInputElement;
     if (selectableChildren.length === 0) {
       welcome.classList.toggle('selected');
