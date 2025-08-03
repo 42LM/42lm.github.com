@@ -55,7 +55,7 @@ import Welcome from '@/components/Welcome.astro';
     display: none; /* Hidden by default */
     position: absolute;
     max-height: 150px;
-    width: 20ch;
+    width: 30ch;
     overflow-y: auto;
     background-color: var(--background1);
     z-index: 1000;
@@ -88,12 +88,13 @@ import Welcome from '@/components/Welcome.astro';
  
 <script>
   import { help } from "@/utils/commands/help";
+  import { themeSwitch } from "@/utils/commands/themeSwitch";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
   const input = document.getElementById('cmdline');
   const suggestionsList = document.getElementById('suggestions-list');
   // Commands
-  const commands = ['┏ help', '┣ todo', '┗ clear screen']
+  const commands = ['┏ help', '┣ switch dark/light theme', '┗ clear screen']
   
   // Select the latest ASCII box automatically
   const selectLatest = () => {
@@ -196,6 +197,9 @@ import Welcome from '@/components/Welcome.astro';
       // OFFICIAL COMMANDS
       if (value.startsWith("help")) {
         help(commandHistorySection, value)
+      }
+      if (value.startsWith("switch")) {
+        themeSwitch()
       }
       if (value.startsWith("clear")) {
         location.reload();
