@@ -108,11 +108,11 @@ import Welcome from '@/components/Welcome.astro';
   import { error } from "@/utils/commands/error";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
-  const promptAt = document.getElementById('prompt-at');
-  const promptDomain = document.getElementById('prompt-domain');
-  const promptSigns = document.getElementById('prompt-signs');
-  const input = document.getElementById('cmdline');
-  const suggestionsList = document.getElementById('suggestions-list');
+  const promptAt = document.getElementById('prompt-at') as HTMLInputElement;
+  const promptDomain = document.getElementById('prompt-domain') as HTMLInputElement;
+  const promptSigns = document.getElementById('prompt-signs') as HTMLInputElement;
+  const input = document.getElementById('cmdline') as HTMLInputElement;
+  const suggestionsList = document.getElementById('suggestions-list') as HTMLInputElement;
   const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
   const desktopMediaQuery = window.matchMedia('(min-width: 769px)');
 
@@ -149,12 +149,12 @@ import Welcome from '@/components/Welcome.astro';
 
   // Select the latest ASCII box automatically
   const selectLatest = () => {
-    const commandHistory = document.getElementById('command-history');
+    const commandHistory = document.getElementById('command-history') as HTMLInputElement;
     const selectableChildren = Array.from(commandHistory.children).slice(2);
 
     console.log(selectableChildren)
 
-    const welcome = document.getElementById('welcome');
+    const welcome = document.getElementById('welcome') as HTMLInputElement;
     if (selectableChildren.length === 0) {
       welcome.classList.toggle('selected');
     } else {
@@ -174,12 +174,12 @@ import Welcome from '@/components/Welcome.astro';
 
   // Select ASCII boxes
   const selectBox = () => {
-    const commandHistory = document.getElementById('command-history');
+    const commandHistory = document.getElementById('command-history') as HTMLInputElement;
     const selectableChildren = Array.from(commandHistory.children).slice(1);
 
     for (const child of selectableChildren) {
       if (!child.classList.contains('event')) {
-        child.addEventListener('click', (event) => {
+        child.addEventListener('click', () => {
           child.classList.toggle('selected');
         });
         child.classList.add('event')
@@ -241,8 +241,7 @@ import Welcome from '@/components/Welcome.astro';
   // Track keyboard input for commands
   cmdline.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      const parentSection = document.getElementById("section");
-      const commandHistorySection = document.getElementById("command-history");
+      const commandHistorySection = document.getElementById("command-history") as HTMLInputElement;
       const value = cmdline.value.toLowerCase();
 
       // COMMANDS
@@ -293,7 +292,7 @@ import Welcome from '@/components/Welcome.astro';
 
   // Handle clicking on a suggestion
   suggestionsList.addEventListener('click', (event) => {
-    if (event.target.classList.contains('suggestion-item')) {
+    if (event?.target?.classList.contains('suggestion-item')) {
       input.value = event.target.textContent.substring(2);
       suggestionsList.classList.remove('show');
       simulateEnter();
