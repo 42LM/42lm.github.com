@@ -126,23 +126,22 @@ import Welcome from '@/components/Welcome.astro';
   });
 
   const updateInputPlaceholder = () => {
-      if (mobileMediaQuery.matches) {
-        cmdline.setAttribute('placeholder', 'Click here');
-      } else {
-        cmdline.setAttribute('placeholder', 'Start typing or click here');
-      }
+    if (mobileMediaQuery.matches) {
+      cmdline.setAttribute('placeholder', 'Click here');
+    } else {
+      cmdline.setAttribute('placeholder', 'Start typing or click here');
+    }
   }
   const updatePrompt = () => {
-    console.log("IN?")
-      if (mobileMediaQuery.matches) {
-        promptAt.innerText = '';
-        promptDomain.innerText = '';
-        promptSigns.innerText = ':$';
-      } else {
-        promptAt.innerText = '@';
-        promptDomain.innerText = '42LM.sh';
-        promptSigns.innerText = ':$ ~';
-      }
+    if (mobileMediaQuery.matches) {
+      promptAt.innerText = '';
+      promptDomain.innerText = '';
+      promptSigns.innerText = ':$';
+    } else {
+      promptAt.innerText = '@';
+      promptDomain.innerText = '42LM.sh';
+      promptSigns.innerText = ':$ ~';
+    }
   }
   updateInputPlaceholder();
   updatePrompt();
