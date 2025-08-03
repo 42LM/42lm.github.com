@@ -1,0 +1,11 @@
+@layer utils {
+  /* HELP COMMAND */
+  .help-header { 
+    display: flex;
+    justify-content: space-between; 
+  }
+
+  .help-content {
+    padding: 10px;
+  }
+}

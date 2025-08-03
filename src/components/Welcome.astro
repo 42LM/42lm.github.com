@@ -1,0 +1,71 @@
+---
+// import BoxHelp from '@/components/BoxHelp.astro';
+---
+
+<row id="welcome" is-="column">
+<span style="color: var(--background1)">&copy; 2025 Lukas Moeller (https://github.com/42LM). All Rights Reserved.</span>
+<pre id="header">
+╦ ╦┌─┐┬  ┌─┐┌─┐┌┬┐┌─┐   ╔═╗┌┬┐┬─┐┌─┐┌┐┌┌─┐┌─┐┬─┐┬
+║║║├┤ │  │  │ ││││├┤    ╚═╗ │ ├┬┘├─┤││││ ┬├┤ ├┬┘│
+╚╩╝└─┘┴─┘└─┘└─┘┴ ┴└─┘┘  ╚═╝ ┴ ┴└─┴ ┴┘└┘└─┘└─┘┴└─o
+</pre>
+
+<span>* Type 'help' to see the list of available commands.</span>
+<span>&nbsp;&nbsp;&gt; Hate typing? - Use the mouse and select the commands via a dropdown.</span>
+<span>* Press 'Ctrl+l' to clear the screen.</span>
+<span>* Press 'Ctrl+u' to cut all text from the current cursor position to the beginning of the line.</span>
+</row>
+
+
+
+<style>
+  row {
+    padding: 10px;
+  }
+
+  #header {
+    padding: 10px 0;
+    background: linear-gradient(
+        90deg, 
+        #E54553 0%, 
+        #FE640C 50%, 
+        #DF8E1D 100%
+    );
+    background-clip: text;
+  }
+
+  #welcome {
+    padding-bottom: 25px;
+
+    span:first-of-type {
+      font-size: 16px;
+    }
+
+    span {
+      color: var(--background3);
+    }
+  }
+
+  .selected {
+    outline: 1px solid var(--sky);
+    background: linear-gradient(
+      90deg,
+      rgba(114, 134, 253, 0.05) 0%,   /* #7286FD at 60% opacity */
+      rgba(30, 102, 244, 0.05) 50%,   /* #1E66F4 at 60% opacity */
+      rgba(4, 165, 228, 0.1) 100%    /* #04A5E4 at 60% opacity */
+    );
+  }
+</style>
+ 
+<script>
+const welcome = document.getElementById('welcome');
+
+welcome.addEventListener('click', (event) => {
+  welcome.classList.toggle('selected');
+  event.stopPropagation(); 
+});
+
+document.addEventListener('click', () => {
+  welcome.classList.remove('selected');
+});
+</script>

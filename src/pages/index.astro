@@ -1,36 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Welcome from '@/components/Welcome.astro';
 ---
 
 <Layout>
-  <pre>
-  _      ______  ___  __ __  _____  __  ___  ___  ____  ________  ____________
- | | /| / / __ \/ _ \/ //_/ /  _/ |/ / / _ \/ _ \/ __ \/ ___/ _ \/ __/ __/ __/
- | |/ |/ / /_/ / , _/ ,&lt;   _/ //    / / ___/ , _/ /_/ / (_ / , _/ _/_\ \_\ \  
- |__/|__/\____/_/|_/_/|_| /___/_/|_/ /_/  /_/|_|\____/\___/_/|_/___/___/___/  
-  </pre>
+  <row is-="column">
+    <!-- placeholder container, will be filles via js -->
+    <div id="command-history">
+      <Welcome></Welcome>
+    </div>
+
+    <row class="custom-dropdown-container">
+      <row align-="start">
+        <span style="display: inline;">
+          <span style="color: var(--red);)">guest</span><span>@</span><span style="color: var(--peach);">42LM.com</span><span>:$ ~</span>
+        </span>
+        <input id="cmdline" placeholder="Start typing or click here" autocomplete="off">
+      </row>
+      <div class="suggestions-list" id="suggestions-list"></div>
+    </row>
+  </row>
+
 </Layout>
 
-<style>
+<style is:global>
   input {
+    min-width: 29ch;
     background: none;
   }
-
-  pre {
-    font-size: 1rem;
-    font-weight: 500;
-    background: linear-gradient(
-        90deg, 
-        #8e44ad 0%, 
-        #c0392b 50%, 
-        #f39c12 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #c0392b;
-  }
-
   /* disable the autofocus border/box shadow */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -44,5 +41,194 @@ import Layout from '../layouts/Layout.astro';
     /* To make the background color transparent */
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; 
   }
-</style>
+  #content {
+    display: block;
+  }
 
+  /* Custom input dropdown */
+  .custom-dropdown-container {
+    display: inline;
+    position: relative;
+    padding: 10px;
+  }
+  .suggestions-list {
+    display: none; /* Hidden by default */
+    position: absolute;
+    max-height: 150px;
+    width: 20ch;
+    overflow-y: auto;
+    background-color: var(--background1);
+    z-index: 1000;
+  }
+  /* Will be added with JavaScript to show the list */
+  .suggestions-list.show {
+    display: block;
+  }
+  .suggestion-item {
+    border-bottom: 1px solid var(--crust);
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  .suggestion-item:hover {
+    color: var(--crust);
+    background-color: var(--sapphire);
+  }
+
+  /* Select ASCII boxes */
+  .selected {
+    outline: 1px solid var(--sky);
+    background: linear-gradient(
+      90deg,
+      rgba(114, 134, 253, 0.05) 0%,   /* #7286FD at 60% opacity */
+      rgba(30, 102, 244, 0.05) 50%,   /* #1E66F4 at 60% opacity */
+      rgba(4, 165, 228, 0.1) 100%    /* #04A5E4 at 60% opacity */
+    );
+  }
+</style>
+ 
+<script>
+  import { help } from "@/utils/commands/help";
+
+  const cmdline = document.getElementById("cmdline") as HTMLInputElement;
+  const input = document.getElementById('cmdline');
+  const suggestionsList = document.getElementById('suggestions-list');
+  // Commands
+  const commands = ['┏ help', '┣ todo', '┗ clear screen']
+
+  // Select ASCII boxes
+  const selectBox = () => {
+    const commandHistory = document.getElementById('command-history');
+    const selectableChildren = Array.from(commandHistory.children).slice(1);
+
+    for (const child of selectableChildren) {
+      if (!child.classList.contains('event')) {
+        child.addEventListener('click', (event) => {
+          child.classList.toggle('selected');
+        });
+        child.classList.add('event')
+      }
+    }
+  }
+
+  // Handle updating of the suggestions
+  const updateSuggestions = () => {
+    const query = input.value.toLowerCase();
+    suggestionsList.innerHTML = ''; // Clear old suggestions
+
+    const filteredOptions = commands.filter(option => 
+      option.toLowerCase().includes(query)
+    );
+
+    if (filteredOptions.length > 0) {
+      filteredOptions.forEach(option => {
+        const item = document.createElement('div');
+        item.classList.add('suggestion-item');
+        item.textContent = option;
+        suggestionsList.appendChild(item);
+      });
+      suggestionsList.classList.add('show');
+    } else {
+      suggestionsList.classList.remove('show');
+    }
+
+    window.scrollTo(0, document.body.scrollHeight);
+  };
+
+  // Check if the user is typing and focus the input
+  window.addEventListener("keydown", (e) => {
+    if (e.key != "Enter") {
+      cmdline.focus();
+    }
+  });
+
+  // Check for terminal shortcuts to remove content
+  // * Ctrl+l
+  // * Ctrl+u
+  window.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === 'l') {
+      location.reload();
+    }
+    if (e.ctrlKey && e.key === 'u') {
+      cmdline.value = ''
+    }
+    if (e.key === "Escape") {
+      // clear the cmdline input field
+      cmdline.value = ''
+      // deselect (remove focus)
+      cmdline.blur();
+      // clear old suggestions
+      suggestionsList.innerHTML = '';
+    }
+  });
+
+  // Track keyboard input for commands
+  cmdline.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const parentSection = document.getElementById("section");
+      const commandHistorySection = document.getElementById("command-history");
+      const value = cmdline.value;
+
+      // OFFICIAL COMMANDS
+      if (value.startsWith("help")) {
+        help(commandHistorySection, value)
+      }
+      if (value.startsWith("clear")) {
+        location.reload();
+      }
+
+      // HIDDEN COMMANDS
+      if (value.startsWith("whoami")) {
+        console.log("IMPLEMENT WHOAMI")
+      }
+
+
+      // make new command history content selectable
+      selectBox();
+      // clear the cmdline input field
+      cmdline.value = ''
+      // deselect (remove focus)
+      cmdline.blur();
+      // clear suggestion list (hide suggestion list)
+      suggestionsList.innerHTML = ''; // Clear old suggestions
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  });
+
+
+  // Simulate enter (used to insert suggestions from the suggestions list)
+  const simulateEnter = () => {
+    const enterEvent = new KeyboardEvent('keydown', {
+      key: 'Enter',
+      code: 'Enter',
+      keyCode: 13,
+      which: 13,
+      bubbles: true,
+    });
+
+    cmdline.dispatchEvent(enterEvent);
+  }
+
+  // Show suggestions when the user clicks/focuses on the input
+  input.addEventListener('focus', updateSuggestions);
+
+  // Show suggestions as the user types
+  input.addEventListener('input', updateSuggestions);
+
+  // Handle clicking on a suggestion
+  suggestionsList.addEventListener('click', (event) => {
+    if (event.target.classList.contains('suggestion-item')) {
+      input.value = event.target.textContent.substring(2);
+      suggestionsList.classList.remove('show');
+      simulateEnter();
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  });
+
+  // Hide the list when clicking elsewhere on the page
+  // 🤮
+  //document.addEventListener('click', (event) => {
+  //  if (!event.target.closest('.custom-dropdown-container')) {
+  //    suggestionsList.classList.remove('show');
+  //  }
+  //});
+</script>

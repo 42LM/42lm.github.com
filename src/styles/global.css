@@ -3,7 +3,9 @@
 @import "@webtui/css";
 @import "@webtui/theme-catppuccin";
 @import "@webtui/plugin-nf";
-/* @import "@/styles/flexbox.css"; */
+@import "@/styles/flexbox.css";
+@import "@/styles/commands.css";
+@import "@/styles/grid.css";
 
 @layer base {
   :root {
@@ -13,13 +15,22 @@
     --line-height: 1.4;
   }
 
-  body,
-  html {
+  html,
+  body {
+    background-color: var(--crust);
+    padding: 1px;
+  }
+
+  main {
     width: 100vw;
     height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
+    background-color: var(--background0);
+  }
+
+  pre {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
