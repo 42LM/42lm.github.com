@@ -13,7 +13,7 @@ import Welcome from '@/components/Welcome.astro';
     <row class="custom-dropdown-container">
       <row align-="start">
         <span style="display: inline;">
-          <span style="color: var(--red);)">guest</span><span>@</span><span style="color: var(--peach);">42LM.com</span><span>:$ ~</span>
+          <span style="color: var(--red);)">guest</span><span id="prompt-at">@</span><span id="prompt-domain" style="color: var(--peach);">42LM.com</span><span id="prompt-signs">:$ ~</span>
         </span>
         <input id="cmdline" placeholder="Start typing or click here" autocomplete="off">
       </row>
@@ -24,9 +24,15 @@ import Welcome from '@/components/Welcome.astro';
 </Layout>
 
 <style is:global>
-  input {
-    min-width: 29ch;
+  #cmdline {
+    min-width: 0;
+    width: 400px;
     background: none;
+  }
+  @media (max-width: 600px) {
+    input {
+      width: 150px;
+    }
   }
   /* disable the autofocus border/box shadow */
   input:-webkit-autofill,
@@ -60,6 +66,11 @@ import Welcome from '@/components/Welcome.astro';
     background-color: var(--background1);
     z-index: 1000;
   }
+  @media (max-width: 600px) {
+    .suggestions-list {
+      width: 27ch;
+    }
+  }
   /* Will be added with JavaScript to show the list */
   .suggestions-list.show {
     display: block;
@@ -70,6 +81,10 @@ import Welcome from '@/components/Welcome.astro';
     cursor: pointer;
   }
   .suggestion-item:hover {
+    color: var(--crust);
+    background-color: var(--sapphire);
+  }
+  .suggestion-item:active {
     color: var(--crust);
     background-color: var(--sapphire);
   }
@@ -91,11 +106,53 @@ import Welcome from '@/components/Welcome.astro';
   import { themeSwitch } from "@/utils/commands/themeSwitch";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
+  const promptAt = document.getElementById('prompt-at');
+  const promptDomain = document.getElementById('prompt-domain');
+  const promptSigns = document.getElementById('prompt-signs');
   const input = document.getElementById('cmdline');
   const suggestionsList = document.getElementById('suggestions-list');
+  const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+  const desktopMediaQuery = window.matchMedia('(min-width: 769px)');
+
   // Commands
   const commands = ['┏ help', '┣ switch dark/light theme', '┗ clear screen']
-  
+
+  // More conveniant to activate the dropdown menu
+  document.addEventListener('click', function(event) {
+    if (event.target !== cmdline) {
+        cmdline.focus();
+    }
+  });
+
+  const updateInputPlaceholder = () => {
+      if (mobileMediaQuery.matches) {
+        cmdline.setAttribute('placeholder', 'Click here');
+      } else {
+        cmdline.setAttribute('placeholder', 'Start typing or click here');
+      }
+  }
+  const updatePrompt = () => {
+    console.log("IN?")
+      if (mobileMediaQuery.matches) {
+        promptAt.innerText = '';
+        promptDomain.innerText = '';
+        promptSigns.innerText = ':$';
+      } else {
+        promptAt.innerText = '@';
+        promptDomain.innerText = '42LM.sh';
+        promptSigns.innerText = ':$ ~';
+      }
+  }
+  updateInputPlaceholder();
+  updatePrompt();
+  // Listen for changes in the media query state
+  // Update placeholder for the cmdline input field
+  mobileMediaQuery.addEventListener('change', updateInputPlaceholder);
+  desktopMediaQuery.addEventListener('change', updateInputPlaceholder);
+  // Update prompt text
+  mobileMediaQuery.addEventListener('change', updatePrompt);
+  desktopMediaQuery.addEventListener('change', updatePrompt);
+
   // Select the latest ASCII box automatically
   const selectLatest = () => {
     const commandHistory = document.getElementById('command-history');
