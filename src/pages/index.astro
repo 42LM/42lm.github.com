@@ -104,6 +104,7 @@ import Welcome from '@/components/Welcome.astro';
 <script>
   import { help } from "@/utils/commands/help";
   import { themeSwitch } from "@/utils/commands/themeSwitch";
+  import { whoami } from "@/utils/commands/whoami";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
   const promptAt = document.getElementById('prompt-at');
@@ -257,6 +258,9 @@ import Welcome from '@/components/Welcome.astro';
       }
       if (value.startsWith("switch")) {
         themeSwitch()
+      }
+      if (value.startsWith("whoami")) {
+        whoami(commandHistorySection)
       }
       if (value.startsWith("clear")) {
         location.reload();
