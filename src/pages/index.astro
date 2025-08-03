@@ -118,13 +118,6 @@ import Welcome from '@/components/Welcome.astro';
   // Commands
   const commands = ['┏ help', '┣ switch dark/light theme', '┗ clear screen']
 
-  // More conveniant to activate the dropdown menu
-  document.addEventListener('click', function(event) {
-    if (event.target !== cmdline) {
-        cmdline.focus();
-    }
-  });
-
   const updateInputPlaceholder = () => {
     if (mobileMediaQuery.matches) {
       cmdline.setAttribute('placeholder', 'Click here');
