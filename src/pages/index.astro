@@ -116,8 +116,19 @@ import Welcome from '@/components/Welcome.astro';
   const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
   const desktopMediaQuery = window.matchMedia('(min-width: 769px)');
 
-  // Commands
-  const commands = ['┏ help', '┣ switch dark/light theme', '┗ clear screen']
+  interface CommandMapping {
+    ui: string;
+    name: string;
+  }
+  const commands: CommandMapping[] = [
+    { ui: '┏ 󰋗 help', name: 'help' },
+    { ui: '┣ 󰔎 switch dark/light theme', name: 'switch' },
+    { ui: '┗  clear screen', name: 'clear' },
+  ];
+  const convertUiToName = (uiCommand: string, commandList: CommandMapping[]): string => {
+    const foundCommand = commandList.find(command => command.ui === uiCommand);
+    return foundCommand ? foundCommand.name : '';
+  }
 
   const updateInputPlaceholder = () => {
     if (mobileMediaQuery.matches) {
@@ -193,14 +204,14 @@ import Welcome from '@/components/Welcome.astro';
     suggestionsList.innerHTML = ''; // Clear old suggestions
 
     const filteredOptions = commands.filter(option => 
-      option.toLowerCase().includes(query)
+      option.name.toLowerCase().includes(query)
     );
 
     if (filteredOptions.length > 0) {
       filteredOptions.forEach(option => {
         const item = document.createElement('div');
         item.classList.add('suggestion-item');
-        item.textContent = option;
+        item.textContent = option.ui;
         suggestionsList.appendChild(item);
       });
       suggestionsList.classList.add('show');
@@ -292,12 +303,10 @@ import Welcome from '@/components/Welcome.astro';
 
   // Handle clicking on a suggestion
   suggestionsList.addEventListener('click', (event) => {
-    if (event?.target?.classList.contains('suggestion-item')) {
-      input.value = event.target.textContent.substring(2);
-      suggestionsList.classList.remove('show');
-      simulateEnter();
-      window.scrollTo(0, document.body.scrollHeight);
-    }
+    input.value = convertUiToName(event.target?.textContent, commands);
+    suggestionsList.classList.remove('show');
+    simulateEnter();
+    window.scrollTo(0, document.body.scrollHeight);
   });
 
   // Hide the list when clicking elsewhere on the page
