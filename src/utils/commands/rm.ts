@@ -1,15 +1,11 @@
-export const ls = (
+export const rm = (
   commandHistorySection: HTMLElement, 
   cmd: string,
 ) => {
   const startTime = performance.now();
 
-  const listInfoElements = [
-    // "<span>&#xf07b; Blog</span>",
-    "<span> ls</span>",
-    "<span> pwd</span>",
-    "<span> rm</span>",
-    "<span> whoami</span>",
+  const rmTextElements = [
+    '<span is-="spinner" variant-="dots"></span> <span>Deleting everything... <span style="color: var(--background1);">not</span></span>',
   ];
 
   const container = document.createElement('row');
@@ -21,15 +17,10 @@ export const ls = (
   command.style = "padding: 0 0 10px 0; color: var(--background3);"
   container.appendChild(command)
 
-  const grid = document.createElement('div');
-  grid.classList.add('grid')
-  container.appendChild(grid)
-
-  listInfoElements.forEach((element) => {
+  rmTextElements.forEach((element) => {
     const spanElement = document.createElement('span');
     spanElement.innerHTML = element;
-    spanElement.style = "color: var(--green);"
-    grid.appendChild(spanElement);
+    container.appendChild(spanElement); 
   });
 
   commandHistorySection.append(container);
