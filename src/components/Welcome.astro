@@ -1,13 +1,19 @@
 <row id="welcome" is-="column">
-<div>
-<span id="copyright" style="color: var(--background2)">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
+<div id="header-container">
+<span id="copyright">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
+<br>
 <pre id="header">
 ╦ ╦┌─┐┬  ┌─┐┌─┐┌┬┐┌─┐   ╔═╗┌┬┐┬─┐┌─┐┌┐┌┌─┐┌─┐┬─┐┬
 ║║║├┤ │  │  │ ││││├┤    ╚═╗ │ ├┬┘├─┤││││ ┬├┤ ├┬┘│
 ╚╩╝└─┘┴─┘└─┘└─┘┴ ┴└─┘,  ╚═╝ ┴ ┴└─┴ ┴┘└┘└─┘└─┘┴└─o
 </pre>
+<input id="secret-button" type="radio" />
 
-<span><span id="quickstart" is-="badge" style="--badge-color: var(--blue); color: var(--crust); --font-size: 20px;">&#xf0313; Type something or &#xf0cfd; click underneath</span></span>
+<details id="popover" is-="popover" position-="top baseline-left">
+  <summary><span id="quickstart" is-="badge" variant-="blue" >&#xf0313; Type something or &#xf0cfd; click underneath</span></summary>
+  <div>Try the command <span is-="badge" variant-="green">ls</span> to see all hidden commands.</div>
+</details>
+
 </div>
 </row>
 
@@ -16,8 +22,21 @@
     padding: 10px;
   }
 
+  #header-container {
+    position: relative;
+  }
+
+  details div {
+	  background-color: var(--background1);
+	  padding: 1lh 1ch;
+  }
+
+  [is-="popover"] {
+	  --popover-backdrop-color: rgba(0, 0, 0, 0.5);
+	}
+
   #header {
-    padding: 10px 0 15px 0;
+    padding: 0 0 10px 0;
     background: linear-gradient(
         90deg, 
         var(--red) 0%,
@@ -32,29 +51,38 @@
     border-bottom: 1px solid var(--background1);
     padding-bottom: 10px;
 
-    span {
-      color: var(--background3);
-    }
-
     div:nth-child(1) {
       padding-left: 10px;
     }
   }
 
   #copyright {
+    color: var(--background1);
     font-size: 16px;
   }
-
-  .selected {
-    outline: 1px solid var(--sky);
-    background: linear-gradient(
-      90deg,
-      rgba(114, 134, 253, 0.05) 0%,   /* #7286FD at 60% opacity */
-      rgba(30, 102, 244, 0.05) 50%,   /* #1E66F4 at 60% opacity */
-      rgba(4, 165, 228, 0.1) 100%    /* #04A5E4 at 60% opacity */
-    );
+  #secret-message {
+    color: var(--background0);
+    font-size: 16px;
   }
-
+  #secret-message:hover {
+    color: var(--red);
+  }
+  #secret-message:active {
+    color: var(--red);
+  }
+  #secret-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 20px;
+    font-size: 16px;
+  }
+  #secret-button:before {
+    background: none;
+    color: var(--background0)
+  }
+  
   @media (max-width: 630px) {
     #header {
       --font-size: 15px;
@@ -74,7 +102,31 @@
 </style>
  
 <script>
-const welcome = document.getElementById('welcome');
+const secretButton = document.getElementById('secret-button') as HTMLInputElement;
+const welcome = document.getElementById('welcome') as HTMLInputElement;
+const popover = document.getElementById('popover') as HTMLInputElement;
+const suggestionsList = document.getElementById('suggestions-list') as HTMLInputElement;
+const promptGuest = document.getElementById('prompt-guest') as HTMLInputElement;
+
+console.log(secretButton.checked)
+
+secretButton.addEventListener("click", () => {
+  if (secretButton.checked) {
+    secretButton.style = "background: var(--red);"
+    promptGuest.innerText = 'admin';
+  }
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key != "Enter") {
+    popover.open = false;
+  }
+});
+
+// Make sure to hide the suggestion list when finding a popup
+popover.addEventListener('click', () => {
+  suggestionsList.classList.remove('show');
+});
 
 welcome.addEventListener('click', (event) => {
   welcome.classList.toggle('selected');
@@ -84,4 +136,5 @@ welcome.addEventListener('click', (event) => {
 document.addEventListener('click', () => {
   welcome.classList.remove('selected');
 });
+
 </script>

@@ -14,7 +14,7 @@ import Welcome from '@/components/Welcome.astro';
     <row class="custom-dropdown-container">
       <row align-="start">
         <span style="display: inline;">
-          <span style="color: var(--red);)">guest</span><span id="prompt-at">@</span><span id="prompt-domain" style="color: var(--peach);">42LM.com</span><span id="prompt-signs">:$ ~</span>
+          <span id="prompt-guest" style="color: var(--red);)">guest</span><span id="prompt-at">@</span><span id="prompt-domain" style="color: var(--peach);">42LM.com</span><span id="prompt-signs">:$ ~</span>
         </span>
         <input id="cmdline" placeholder="Start typing or click here" autocomplete="off">
       </row>
@@ -127,7 +127,7 @@ import Welcome from '@/components/Welcome.astro';
   }
   const commands: CommandMapping[] = [
     { ui: '┏ 󰋗 help', name: 'help' },
-    { ui: '┣ 󰔎 switch dark/light theme', name: 'switch' },
+    { ui: '┣ 󰔎 switch theme', name: 'switch' },
     { ui: '┗  clear screen', name: 'clear' },
   ];
   const convertUiToName = (uiCommand: string, commandList: CommandMapping[]): string => {
