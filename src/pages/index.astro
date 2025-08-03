@@ -10,6 +10,7 @@ import Welcome from '@/components/Welcome.astro';
       <Welcome></Welcome>
     </div>
 
+    <!-- TODO: refactor, component CommandLine -->
     <row class="custom-dropdown-container">
       <row align-="start">
         <span style="display: inline;">
@@ -102,10 +103,12 @@ import Welcome from '@/components/Welcome.astro';
 </style>
  
 <script>
+  // TODO: refactor :p
   import { help } from "@/utils/commands/help";
   import { themeSwitch } from "@/utils/commands/themeSwitch";
   import { whoami } from "@/utils/commands/whoami";
   import { error } from "@/utils/commands/error";
+  import { ls } from "@/utils/commands/ls";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
   const promptAt = document.getElementById('prompt-at') as HTMLInputElement;
@@ -260,10 +263,13 @@ import Welcome from '@/components/Welcome.astro';
         help(commandHistorySection, value)
       } else if (value.startsWith("switch")) {
         themeSwitch()
-      } else if (value.startsWith("whoami")) {
-        whoami(commandHistorySection, value)
       } else if (value.startsWith("clear")) {
         location.reload();
+      // HIDDEN COMMANDS
+      } else if (value.startsWith("whoami")) {
+        whoami(commandHistorySection, value)
+      } else if (value.startsWith("ls") || value.startsWith("dir")) {
+        ls(commandHistorySection, value)
       } else {
         error(commandHistorySection, value)
       }
