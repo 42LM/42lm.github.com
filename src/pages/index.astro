@@ -105,6 +105,7 @@ import Welcome from '@/components/Welcome.astro';
   import { help } from "@/utils/commands/help";
   import { themeSwitch } from "@/utils/commands/themeSwitch";
   import { whoami } from "@/utils/commands/whoami";
+  import { error } from "@/utils/commands/error";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
   const promptAt = document.getElementById('prompt-at');
@@ -244,25 +245,18 @@ import Welcome from '@/components/Welcome.astro';
       const commandHistorySection = document.getElementById("command-history");
       const value = cmdline.value.toLowerCase();
 
-      // OFFICIAL COMMANDS
+      // COMMANDS
       if (value.startsWith("help")) {
         help(commandHistorySection, value)
-      }
-      if (value.startsWith("switch")) {
+      } else if (value.startsWith("switch")) {
         themeSwitch()
-      }
-      if (value.startsWith("whoami")) {
+      } else if (value.startsWith("whoami")) {
         whoami(commandHistorySection, value)
-      }
-      if (value.startsWith("clear")) {
+      } else if (value.startsWith("clear")) {
         location.reload();
+      } else {
+        error(commandHistorySection, value)
       }
-
-      // HIDDEN COMMANDS
-      if (value.startsWith("whoami")) {
-        console.log("IMPLEMENT WHOAMI")
-      }
-
 
       // make new command history content selectable
       selectBox();

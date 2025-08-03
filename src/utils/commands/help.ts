@@ -32,5 +32,5 @@ export const help = (commandHistorySection, cmd) => {
 
   const endTime = performance.now();
   const elapsedTime = endTime - startTime;
-  command.innerHTML = '<span>~ '+cmd+' ('+elapsedTime.toFixed(3)+'s)</span>';
+  command.innerHTML = '<span>~ '+cmd+' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
 }
