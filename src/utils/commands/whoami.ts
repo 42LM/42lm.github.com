@@ -1,4 +1,7 @@
-export const whoami = (commandHistorySection, cmd) => {
+export const whoami = (
+  commandHistorySection: HTMLElement, 
+  cmd: string,
+) => {
   const startTime = performance.now();
 
   const container = document.createElement('row');
@@ -10,18 +13,22 @@ export const whoami = (commandHistorySection, cmd) => {
   container.appendChild(command)
 
   const spanElement = document.createElement('span');
-  spanElement.innerHTML = '<span>Chances are you are human controlled by '+getPlatformFromUserAgent(navigator.userAgent)+'</span>';
-  spanElement.style = "padding: 10px; "
+  spanElement.innerHTML = '<span>Chances are you are human controlled by '+
+    getPlatformFromUserAgent(navigator.userAgent)+
+    '</span>';
+  spanElement.style = "padding: 10px;"
   container.appendChild(spanElement)
 
   commandHistorySection.append(container);
 
   const endTime = performance.now();
   const elapsedTime = endTime - startTime;
-  command.innerHTML = '<span>~ '+cmd+' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
+  command.innerHTML = '<span>~ '+
+    cmd+
+    ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
 }
 
-const getPlatformFromUserAgent = (userAgent) => {
+const getPlatformFromUserAgent = (userAgent: string) => {
     if (userAgent.includes('Win')) return 'Windows';
     if (userAgent.includes('Mac')) return 'macOS';
     if (userAgent.includes('Linux')) return 'Linux';
