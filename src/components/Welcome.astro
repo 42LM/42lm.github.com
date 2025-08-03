@@ -1,4 +1,5 @@
 <row id="welcome" is-="column">
+<div>
 <span id="copyright" style="color: var(--background2)">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
 <pre id="header">
 ╦ ╦┌─┐┬  ┌─┐┌─┐┌┬┐┌─┐   ╔═╗┌┬┐┬─┐┌─┐┌┐┌┌─┐┌─┐┬─┐┬
@@ -7,6 +8,7 @@
 </pre>
 
 <span><span id="quickstart" is-="badge" style="--badge-color: var(--blue); color: var(--crust); --font-size: 20px;">&#xf0313; Type something or &#xf0cfd; click underneath</span></span>
+</div>
 </row>
 
 <style>
@@ -15,7 +17,7 @@
   }
 
   #header {
-    padding: 10px 0;
+    padding: 10px 0 15px 0;
     background: linear-gradient(
         90deg, 
         var(--red) 0%,
@@ -26,10 +28,16 @@
   }
 
   #welcome {
-    padding-bottom: 25px;
+    padding: 0;
+    border-bottom: 1px solid var(--background1);
+    padding-bottom: 10px;
 
     span {
       color: var(--background3);
+    }
+
+    div:nth-child(1) {
+      padding-left: 10px;
     }
   }
 

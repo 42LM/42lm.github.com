@@ -252,7 +252,7 @@ import Welcome from '@/components/Welcome.astro';
         themeSwitch()
       }
       if (value.startsWith("whoami")) {
-        whoami(commandHistorySection)
+        whoami(commandHistorySection, value)
       }
       if (value.startsWith("clear")) {
         location.reload();

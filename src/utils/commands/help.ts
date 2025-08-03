@@ -1,4 +1,6 @@
-export const help = (commandHistorySection) => {
+export const help = (commandHistorySection, cmd) => {
+  const startTime = performance.now();
+
   const helpText = [
     "<span>42LM - Homepage</span><br><br>",
     "<span>Available Commands:</span><br>",
@@ -6,39 +8,29 @@ export const help = (commandHistorySection) => {
     "<span>&nbsp;&nbsp;switch&nbsp;&nbsp;&nbsp;Switch dark/light theme</span><br>",
     "<span>&nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;Clear the screen</span><br><br>",
     "<span>* Press 'Ctrl+l' to clear the screen.</span>",
-    "<span>* Press 'Ctrl+u' to cut all text from the current cursor position to the beginning of the line.</span>"
+    "<span>* Press 'Ctrl+u' to cut all text from the current cursor position to the beginning of the line.</span>",
+    "<span>* Press 'Escape' to deselect the input field.</span>"
     // "<span>Use &quot;[command] help&quot; for more information about a command</span>",
   ];
 
-  const container = document.createElement('div');
-  container.style = "padding: 5px; --box-border-color: var(--background1);"
+  const container = document.createElement('row');
+  container.setAttribute('is-', 'column');
+  container.classList.add('command-content')
+  container.style = "border-bottom: 1px solid var(--background1);"
 
-  const spanElement = document.createElement('span');
-  spanElement.innerHTML = '<span is-="badge" style="--badge-color: var(--background1); --badge-text: var(--foreground2)">&#xf4b5; help</span>';
-  container.appendChild(spanElement)
-
-
-  const divElemListCommand = document.createElement('div');
-  divElemListCommand.setAttribute('box-', 'square');
-  divElemListCommand.setAttribute('shear-', 'top');
-
-  const divHeader = document.createElement('div')
-  divHeader.classList.add('help-header')
-  divHeader.appendChild(spanElement)
-
-  divElemListCommand.appendChild(divHeader);
-
-  const divList = document.createElement('row');
-  divList.setAttribute('is-', 'column');
-  divList.classList.add('command-content')
+  const command = document.createElement('span');
+  command.style = "padding: 0 0 10px 0; color: var(--background3);"
+  container.appendChild(command)
 
   helpText.forEach((bookTitle) => {
     const spanElement = document.createElement('span');
     spanElement.innerHTML = bookTitle;
-    divList.appendChild(spanElement);
+    container.appendChild(spanElement);
   });
-  divElemListCommand.appendChild(divList);
-  container.appendChild(divElemListCommand)
 
   commandHistorySection.append(container);
+
+  const endTime = performance.now();
+  const elapsedTime = endTime - startTime;
+  command.innerHTML = '<span>~ '+cmd+' ('+elapsedTime.toFixed(3)+'s)</span>';
 }
