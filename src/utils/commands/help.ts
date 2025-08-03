@@ -2,9 +2,11 @@ export const help = (commandHistorySection) => {
   const helpText = [
     "<span>42LM - Homepage</span><br><br>",
     "<span>Available Commands:</span><br>",
-    "<span>&nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;Help about any command</span><br>",
-    "<span>&nbsp;&nbsp;todo&nbsp;&nbsp;&nbsp;&nbsp;Placeholder (Needs to be implemented)</span><br>",
-    "<span>&nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;Clear the screen</span>",
+    "<span>&nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help about any command</span><br>",
+    "<span>&nbsp;&nbsp;switch&nbsp;&nbsp;&nbsp;Switch dark/light theme</span><br>",
+    "<span>&nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;Clear the screen</span><br><br>",
+    "<span>* Press 'Ctrl+l' to clear the screen.</span>",
+    "<span>* Press 'Ctrl+u' to cut all text from the current cursor position to the beginning of the line.</span>"
     // "<span>Use &quot;[command] help&quot; for more information about a command</span>",
   ];
 

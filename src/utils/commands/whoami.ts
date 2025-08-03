@@ -12,7 +12,6 @@ export const whoami = (commandHistorySection) => {
   divElemListCommand.setAttribute('shear-', 'top');
 
   const divHeader = document.createElement('div')
-  // divHeader.classList.add('help-header')
   divHeader.appendChild(spanElement)
 
   divElemListCommand.appendChild(divHeader);

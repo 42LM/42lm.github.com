@@ -3,17 +3,14 @@
 ---
 
 <row id="welcome" is-="column">
-<span style="color: var(--background2)">&copy; 2025 Lukas Moeller (https://github.com/42LM). All Rights Reserved.</span>
+<span id="copyright" style="color: var(--background2)">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
 <pre id="header">
 ╦ ╦┌─┐┬  ┌─┐┌─┐┌┬┐┌─┐   ╔═╗┌┬┐┬─┐┌─┐┌┐┌┌─┐┌─┐┬─┐┬
 ║║║├┤ │  │  │ ││││├┤    ╚═╗ │ ├┬┘├─┤││││ ┬├┤ ├┬┘│
-╚╩╝└─┘┴─┘└─┘└─┘┴ ┴└─┘┘  ╚═╝ ┴ ┴└─┴ ┴┘└┘└─┘└─┘┴└─o
+╚╩╝└─┘┴─┘└─┘└─┘┴ ┴└─┘,  ╚═╝ ┴ ┴└─┴ ┴┘└┘└─┘└─┘┴└─o
 </pre>
 
-<span>* Type 'help' to see the list of available commands.</span>
-<span>&nbsp;&nbsp;&gt; Hate typing? - Use the mouse and select the commands via a dropdown.</span>
-<span>* Press 'Ctrl+l' to clear the screen.</span>
-<span>* Press 'Ctrl+u' to cut all text from the current cursor position to the beginning of the line.</span>
+<span><span id="quickstart" is-="badge" style="--badge-color: var(--blue); color: var(--crust); --font-size: 20px;">&#xf0313; Type something or &#xf0cfd; click underneath</span></span>
 </row>
 
 <style>
@@ -25,9 +22,9 @@
     padding: 10px 0;
     background: linear-gradient(
         90deg, 
-        #E54553 0%, 
-        #FE640C 50%, 
-        #DF8E1D 100%
+        var(--red) 0%,
+        var(--peach) 50%,
+        var(--yellow) 100%
     );
     background-clip: text;
   }
@@ -35,13 +32,13 @@
   #welcome {
     padding-bottom: 25px;
 
-    span:first-of-type {
-      font-size: 16px;
-    }
-
     span {
       color: var(--background3);
     }
+  }
+
+  #copyright {
+    font-size: 16px;
   }
 
   .selected {
@@ -58,10 +55,16 @@
     #header {
       --font-size: 15px;
     }
+    #quickstart {
+      font-size: 18px;
+    }
   }
   @media (max-width: 480px) {
     #header {
       --font-size: 10px;
+    }
+    #quickstart {
+      font-size: 14px;
     }
   }
 </style>
