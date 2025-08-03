@@ -94,6 +94,31 @@ import Welcome from '@/components/Welcome.astro';
   const suggestionsList = document.getElementById('suggestions-list');
   // Commands
   const commands = ['┏ help', '┣ todo', '┗ clear screen']
+  
+  // Select the latest ASCII box automatically
+  const selectLatest = () => {
+    const commandHistory = document.getElementById('command-history');
+    const selectableChildren = Array.from(commandHistory.children).slice(2);
+
+    console.log(selectableChildren)
+
+    const welcome = document.getElementById('welcome');
+    if (selectableChildren.length === 0) {
+      welcome.classList.toggle('selected');
+    } else {
+      welcome.classList.remove('selected');
+    }
+
+    for (let i = 0; i < selectableChildren.length; i++) {
+        if (i === selectableChildren.length - 1) {
+          selectableChildren[i].classList.toggle('selected');
+        } else {
+          selectableChildren[i].classList.remove('selected');
+        }
+    }
+  }
+  // Call directly to check/select the welcome ascii box
+  selectLatest();
 
   // Select ASCII boxes
   const selectBox = () => {
@@ -184,6 +209,7 @@ import Welcome from '@/components/Welcome.astro';
 
       // make new command history content selectable
       selectBox();
+      selectLatest();
       // clear the cmdline input field
       cmdline.value = ''
       // deselect (remove focus)
