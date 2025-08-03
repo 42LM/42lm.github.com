@@ -4,9 +4,10 @@ export const ls = (
 ) => {
   const startTime = performance.now();
 
-  const listInfos = [
+  const listInfoElements = [
     // "<span>&#xf07b; Blog</span>",
     "<span> ls</span>",
+    "<span> pwd</span>",
     "<span> whoami</span>",
   ];
 
@@ -23,9 +24,9 @@ export const ls = (
   grid.classList.add('grid')
   container.appendChild(grid)
 
-  listInfos.forEach((bookTitle) => {
+  listInfoElements.forEach((element) => {
     const spanElement = document.createElement('span');
-    spanElement.innerHTML = bookTitle;
+    spanElement.innerHTML = element;
     spanElement.style = "color: var(--green);"
     grid.appendChild(spanElement);
   });

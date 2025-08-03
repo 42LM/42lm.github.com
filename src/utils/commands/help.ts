@@ -4,7 +4,7 @@ export const help = (
 ) => {
   const startTime = performance.now();
 
-  const helpText = [
+  const helpTextElements = [
     "<span>42LM - Homepage</span><br><br>",
     "<span>Available Commands:</span><br>",
     "<span>&nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help about any command</span><br>",
@@ -25,9 +25,9 @@ export const help = (
   command.style = "padding: 0 0 10px 0; color: var(--background3);"
   container.appendChild(command)
 
-  helpText.forEach((bookTitle) => {
+  helpTextElements.forEach((element) => {
     const spanElement = document.createElement('span');
-    spanElement.innerHTML = bookTitle;
+    spanElement.innerHTML = element;
     container.appendChild(spanElement);
   });
 

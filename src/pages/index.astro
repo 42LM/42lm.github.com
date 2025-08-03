@@ -109,6 +109,7 @@ import Welcome from '@/components/Welcome.astro';
   import { whoami } from "@/utils/commands/whoami";
   import { error } from "@/utils/commands/error";
   import { ls } from "@/utils/commands/ls";
+  import { pwd } from "@/utils/commands/pwd";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
   const promptAt = document.getElementById('prompt-at') as HTMLInputElement;
@@ -270,6 +271,8 @@ import Welcome from '@/components/Welcome.astro';
         whoami(commandHistorySection, value)
       } else if (value.startsWith("ls") || value.startsWith("dir")) {
         ls(commandHistorySection, value)
+      } else if (value.startsWith("pwd")) {
+        pwd(commandHistorySection, value)
       } else {
         error(commandHistorySection, value)
       }

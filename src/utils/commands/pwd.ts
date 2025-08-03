@@ -1,12 +1,11 @@
-export const error = (
+export const pwd = (
   commandHistorySection: HTMLElement, 
   cmd: string,
 ) => {
   const startTime = performance.now();
 
-  const errorTextElements = [
-    '<span>Unknown command</span>',
-    // '<span is-="badge" style="--badge-color: var(--red); --badge-text: var(--crust);">ERROR</span><span> Unknown command</span>',
+  const pwdTextElements = [
+    '<span>/</span>',
   ];
 
   const container = document.createElement('row');
@@ -18,7 +17,7 @@ export const error = (
   command.style = "padding: 0 0 10px 0; color: var(--background3);"
   container.appendChild(command)
 
-  errorTextElements.forEach((element) => {
+  pwdTextElements.forEach((element) => {
     const spanElement = document.createElement('span');
     spanElement.innerHTML = element;
     container.appendChild(spanElement); 
@@ -30,5 +29,5 @@ export const error = (
   const elapsedTime = endTime - startTime;
   command.innerHTML = '<span>~ '+
     cmd+
-    ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--red)">&#xf467;</span></span>';
+    ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
 }
