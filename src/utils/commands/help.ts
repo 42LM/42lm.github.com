@@ -9,10 +9,10 @@ export const help = (commandHistorySection) => {
   ];
 
   const container = document.createElement('div');
-  container.style = "padding: 5px;"
+  container.style = "padding: 5px; --box-border-color: var(--background1);"
 
   const spanElement = document.createElement('span');
-  spanElement.innerHTML = '<span is-="badge" style="--badge-color: var(--background1); --badge-text: var(--red);"><strong>help</strong></span>';
+  spanElement.innerHTML = '<span is-="badge" style="--badge-color: var(--background1); --badge-text: var(--foreground2)">&#xf4b5; help</span>';
   container.appendChild(spanElement)
 
 
@@ -28,7 +28,7 @@ export const help = (commandHistorySection) => {
 
   const divList = document.createElement('row');
   divList.setAttribute('is-', 'column');
-  divList.classList.add('help-content')
+  divList.classList.add('command-content')
 
   helpText.forEach((bookTitle) => {
     const spanElement = document.createElement('span');
