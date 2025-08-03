@@ -33,4 +33,16 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  @media (max-width: 630px) {
+    :root {
+      --font-size: 10px;
+    }
+  }
+
+  @media (max-width: 330px) {
+    :root {
+      --font-size: 8px;
+    }
+  }
 }

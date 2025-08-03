@@ -16,8 +16,6 @@
 <span>* Press 'Ctrl+u' to cut all text from the current cursor position to the beginning of the line.</span>
 </row>
 
-
-
 <style>
   row {
     padding: 10px;
@@ -54,6 +52,14 @@
       rgba(30, 102, 244, 0.05) 50%,   /* #1E66F4 at 60% opacity */
       rgba(4, 165, 228, 0.1) 100%    /* #04A5E4 at 60% opacity */
     );
+  }
+
+  @media (max-width: 480px) {
+    #welcome {
+      span:first-of-type {
+        font-size: 8px;
+      }
+    }
   }
 </style>
  
