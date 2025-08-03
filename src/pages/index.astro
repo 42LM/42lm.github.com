@@ -250,7 +250,7 @@ import Welcome from '@/components/Welcome.astro';
     if (e.key === "Enter") {
       const parentSection = document.getElementById("section");
       const commandHistorySection = document.getElementById("command-history");
-      const value = cmdline.value;
+      const value = cmdline.value.toLowerCase();
 
       // OFFICIAL COMMANDS
       if (value.startsWith("help")) {
