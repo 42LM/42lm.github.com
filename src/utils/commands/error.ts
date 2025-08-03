@@ -1,4 +1,7 @@
-export const error = (commandHistorySection, cmd) => {
+export const error = (
+  commandHistorySection: HTMLElement, 
+  cmd: string,
+) => {
   const startTime = performance.now();
 
   const helpText = [
@@ -25,5 +28,7 @@ export const error = (commandHistorySection, cmd) => {
 
   const endTime = performance.now();
   const elapsedTime = endTime - startTime;
-  command.innerHTML = '<span>~ '+cmd+' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--red)">&#xf467;</span></span>';
+  command.innerHTML = '<span>~ '+
+    cmd+
+    ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--red)">&#xf467;</span></span>';
 }
