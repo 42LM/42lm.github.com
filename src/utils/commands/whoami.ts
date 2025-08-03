@@ -13,7 +13,7 @@ export const whoami = (
   container.appendChild(command)
 
   const spanElement = document.createElement('span');
-  spanElement.innerHTML = '<span>Chances are you are human controlled by '+
+  spanElement.innerHTML = '<span>Chances are you are a human controlled by '+
     getPlatformFromUserAgent(navigator.userAgent)+
     '</span>';
   spanElement.style = "padding: 10px;"
