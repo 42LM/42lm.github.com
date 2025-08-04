@@ -111,6 +111,7 @@ import Welcome from '@/components/Welcome.astro';
   import { rm } from "@/utils/commands/rm";
   import { echo } from "@/utils/commands/echo";
   import { cd } from "@/utils/commands/cd";
+  import { social } from "@/utils/commands/social";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
   const promptAt = document.getElementById('prompt-at') as HTMLInputElement;
@@ -128,9 +129,10 @@ import Welcome from '@/components/Welcome.astro';
     name: string;
   }
   const commands: CommandMapping[] = [
-    { ui: '┏ 󰋗 help', name: 'help' },
-    { ui: '┣ 󰔎 switch theme', name: 'switch' },
-    { ui: '┗  clear screen', name: 'clear' },
+    { ui: '┏ 󰋗  help', name: 'help' },
+    { ui: '┣   social links', name: 'social' },
+    { ui: '┣ 󰔎  switch theme', name: 'switch' },
+    { ui: '┗   clear screen', name: 'clear' },
   ];
   const convertUiToName = (uiCommand: string, commandList: CommandMapping[]): string => {
     const foundCommand = commandList.find(command => command.ui === uiCommand);
@@ -289,7 +291,8 @@ import Welcome from '@/components/Welcome.astro';
         selectedSuggestionIndex > -1 && suggestionItems[selectedSuggestionIndex] &&
           !value.startsWith("help") &&
           !value.startsWith("switch") &&
-          !value.startsWith("clear")
+          !value.startsWith("clear") &&
+          !value.startsWith("social")
       ) {
         e.preventDefault();
         input.value = convertUiToName(suggestionItems[selectedSuggestionIndex].textContent, commands);
@@ -302,6 +305,8 @@ import Welcome from '@/components/Welcome.astro';
         // COMMANDS
         if (value.startsWith("help")) {
           help(commandHistorySection, value)
+        } else if (value.startsWith("social")) {
+          social(commandHistorySection, value)
         } else if (value.startsWith("switch")) {
           themeSwitch()
         } else if (value.startsWith("clear")) {
