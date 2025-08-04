@@ -4,9 +4,7 @@ export const pwd = (
 ) => {
   const startTime = performance.now();
 
-  const pwdTextElements = [
-    '<span>/</span>',
-  ];
+  const path = localStorage.getItem('cd');
 
   const container = document.createElement('row');
   container.setAttribute('is-', 'column');
@@ -17,17 +15,26 @@ export const pwd = (
   command.style = "padding: 0 0 10px 0; color: var(--background3);"
   container.appendChild(command)
 
-  pwdTextElements.forEach((element) => {
-    const spanElement = document.createElement('span');
-    spanElement.innerHTML = element;
-    container.appendChild(spanElement); 
-  });
+  const spanElement = document.createElement('span');
+  if (path != "") {
+    spanElement.innerHTML = '<span>'+path+'</span>';
+  } else {
+    spanElement.innerHTML = '<span>/</span>';
+  }
+  container.appendChild(spanElement); 
 
   commandHistorySection.append(container);
 
   const endTime = performance.now();
   const elapsedTime = endTime - startTime;
-  command.innerHTML = '<span>~ '+
-    cmd+
-    ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
+  if (localStorage.getItem('cd').length > 50) {
+    spanElement.innerHTML = '<span>Path too long</span>';
+    command.innerHTML = '<span>~ '+
+      cmd+
+      ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--red)">&#xf467;</span></span>';
+  } else {
+    command.innerHTML = '<span>~ '+
+      cmd+
+      ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
+  }
 }

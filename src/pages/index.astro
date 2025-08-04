@@ -112,6 +112,7 @@ import Welcome from '@/components/Welcome.astro';
   import { pwd } from "@/utils/commands/pwd";
   import { rm } from "@/utils/commands/rm";
   import { echo } from "@/utils/commands/echo";
+  import { cd } from "@/utils/commands/cd";
 
   const cmdline = document.getElementById("cmdline") as HTMLInputElement;
   const promptAt = document.getElementById('prompt-at') as HTMLInputElement;
@@ -121,6 +122,8 @@ import Welcome from '@/components/Welcome.astro';
   const suggestionsList = document.getElementById('suggestions-list') as HTMLInputElement;
   const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
   const desktopMediaQuery = window.matchMedia('(min-width: 769px)');
+
+  localStorage.setItem('cd', '');
 
   interface CommandMapping {
     ui: string;
@@ -267,6 +270,8 @@ import Welcome from '@/components/Welcome.astro';
       } else if (value.startsWith("clear")) {
         location.reload();
       // HIDDEN COMMANDS
+      } else if (value.startsWith("cd")) {
+        cd(commandHistorySection, value)
       } else if (value.startsWith("echo")) {
         echo(commandHistorySection, value)
       } else if (value.startsWith("ls") || value.startsWith("dir")) {

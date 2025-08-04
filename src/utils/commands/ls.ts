@@ -6,6 +6,7 @@ export const ls = (
 
   const listInfoElements = [
     // "<span>&#xf07b; Blog</span>",
+    "<span> cd</span>",
     "<span> echo</span>",
     "<span> ls</span>",
     "<span> pwd</span>",
