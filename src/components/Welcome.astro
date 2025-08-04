@@ -2,11 +2,19 @@
 <div id="header-container">
 <span id="copyright">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
 <br>
+<div is-="tooltip">
+  <div is-="tooltip-trigger">
 <pre id="header">
 ╦ ╦┌─┐┬  ┌─┐┌─┐┌┬┐┌─┐   ╔═╗┌┬┐┬─┐┌─┐┌┐┌┌─┐┌─┐┬─┐┬
 ║║║├┤ │  │  │ ││││├┤    ╚═╗ │ ├┬┘├─┤││││ ┬├┤ ├┬┘│
 ╚╩╝└─┘┴─┘└─┘└─┘┴ ┴└─┘,  ╚═╝ ┴ ┴└─┴ ┴┘└┘└─┘└─┘┴└─o
 </pre>
+  </div>
+    <div is-="tooltip-content" position-="top baseline-bottom">
+      <p>Secrets hide here. Uncover them! &#xf0208; open!</p>
+    </div>
+</div>
+<!-- when found enables admin features -->
 <input id="secret-button" type="radio" />
 
 <details id="popover" is-="popover" position-="top baseline-left">
@@ -33,10 +41,10 @@
 
   [is-="popover"] {
 	  --popover-backdrop-color: rgba(0, 0, 0, 0.5);
-	}
+  }
 
   #header {
-    padding: 0 0 10px 0;
+    padding: 0 0 10px 10px;
     background: linear-gradient(
         90deg, 
         var(--red) 0%,
@@ -50,13 +58,14 @@
     padding: 0;
     border-bottom: 1px solid var(--background1);
     padding-bottom: 10px;
+  }
 
-    div:nth-child(1) {
-      padding-left: 10px;
-    }
+  #quickstart {
+    padding-left: 10px;
   }
 
   #copyright {
+    padding-left: 10px;
     color: var(--background1);
     font-size: 16px;
   }

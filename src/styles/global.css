@@ -15,6 +15,11 @@
     --line-height: 1.4;
   }
 
+  [is-="tooltip-content"] {
+    background-color: var(--background1);
+    padding: 0 10px 0 10px;
+  }
+
   html,
   body {
     background-color: var(--crust);
