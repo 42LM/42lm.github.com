@@ -17,10 +17,14 @@
 <!-- when found enables admin features -->
 <input id="secret-button" type="radio" />
 
-<details id="popover" is-="popover" position-="top baseline-left">
-  <summary><span id="quickstart" is-="badge" variant-="blue" >&#xf0313; Type something or &#xf0cfd; click underneath</span></summary>
-  <div>Try the command <span is-="badge" variant-="green">ls</span> to see all hidden commands.</div>
-</details>
+<div is-="tooltip">
+  <div is-="tooltip-trigger">
+    <span id="quickstart" is-="badge" variant-="blue" >&#xf0313; Type something or &#xf0cfd; click underneath</span></summary>
+  </div>
+  <div is-="tooltip-content" position-="top baseline-bottom" style="padding: 28px 12px;">
+      <p>Try the command <span is-="badge" variant-="green">ls</span> to see all hidden commands.</p>
+    </div>
+</div>
 
 </div>
 </row>
