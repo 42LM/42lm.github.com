@@ -117,8 +117,6 @@
 <script>
 const secretButton = document.getElementById('secret-button') as HTMLInputElement;
 const welcome = document.getElementById('welcome') as HTMLInputElement;
-const popover = document.getElementById('popover') as HTMLInputElement;
-const suggestionsList = document.getElementById('suggestions-list') as HTMLInputElement;
 const promptGuest = document.getElementById('prompt-guest') as HTMLInputElement;
 
 secretButton.addEventListener("click", () => {
@@ -126,17 +124,6 @@ secretButton.addEventListener("click", () => {
     secretButton.style = "background: var(--red);"
     promptGuest.innerText = 'admin';
   }
-});
-
-window.addEventListener("keydown", (e) => {
-  if (e.key != "Enter") {
-    popover.open = false;
-  }
-});
-
-// Make sure to hide the suggestion list when finding a popup
-popover.addEventListener('click', () => {
-  suggestionsList.classList.remove('show');
 });
 
 welcome.addEventListener('click', (event) => {
