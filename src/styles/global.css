@@ -35,11 +35,13 @@
   }
 
   a {
-    color: var(--sky);
+    color: var(--blue);
     text-decoration: underline;
+    text-decoration-color: var(--sky);
   }
   a:hover {
-    color: var(--blue);
+    color: var(--sky);
+    text-decoration-color: var(--mauve);
   }
 
   pre {

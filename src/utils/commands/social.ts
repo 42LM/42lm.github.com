@@ -4,10 +4,14 @@ export const social = (
 ) => {
   const startTime = performance.now();
 
+  const socialSpanElements = [
+    "┣ ",
+    "┗ ",
+  ]
+
   const socialTextElements = [
-    '<span>󰖟 Find me on the web:</span>',
-    '<span>┣ <span style="color: white">&#xf02a4; <a href="https://github.com/42LM" target="_blank">https://github.com/42LM</a></span>',
-    '<span>┗ <span style="color: #0B65C2">&#xf033b;</span> <a href="https://linkedin.com/in/42lm" target="_blank">https://linkedin.com/in/42lm</a></span>',
+    '<a href="https://github.com/42LM" target="_blank">GitHub &#xf005c;</a>',
+    '<a href="https://linkedin.com/in/42lm" target="_blank">LinkedIn &#xf005c;</a>',
   ];
 
   const container = document.createElement('row');
@@ -19,11 +23,16 @@ export const social = (
   command.style = "padding: 0 0 10px 0; color: var(--background3);"
   container.appendChild(command)
 
-  socialTextElements.forEach((element) => {
+  const header = document.createElement('span');
+  header.textContent = "󰖟 Find me on the web:"
+  container.appendChild(command)
+
+  socialTextElements.forEach((element, i) => {
     const spanElement = document.createElement('span');
-    spanElement.innerHTML = element;
-    container.appendChild(spanElement);
+    spanElement.innerHTML = socialSpanElements[i]+element;
+    container.appendChild(spanElement)
   });
+
 
   commandHistorySection.append(container);
 
