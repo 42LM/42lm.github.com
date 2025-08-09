@@ -12,14 +12,14 @@ import Welcome from '@/components/Welcome.astro';
     <row class="custom-dropdown-container">
       <row align-="between" style="align-items: center">
         <div>
-          <span style="display: inline;">
-            <span id="prompt-guest" style="color: var(--red);">guest</span><span id="prompt-at">@</span><span id="prompt-domain" style="color: var(--peach);">42LM.com</span><span id="prompt-signs">:$ ~</span>
+          <span>
+            <span id="prompt-guest">guest</span><span id="prompt-at">@</span><span id="prompt-domain">42LM.com</span><span id="prompt-signs">:$ ~</span>
           </span>
           <input id="cmdline" placeholder="Start typing or click here" autocomplete="off">
         </div>
         <div id="webtui-container" style="font-size: 16px">
           <a id="webtui" href="https://webtui.ironclad.sh/" target="_blank">
-            <span id="powered-by" style="color: var(--background0)">Powered by </span>
+            <span id="powered-by">Powered by </span>
             <span is-="badge" variant-="background0">
                 <strong>&lt;/<span style="color: var(--green)">#&gt;</span><span>WebTUI</span></strong>
                 <!-- <strong>&lt;/#&gt;<span>WebTUI</span></strong> -->
@@ -51,6 +51,18 @@ import Welcome from '@/components/Welcome.astro';
     background: none;
     padding: 0;
   }
+
+  #powered-by {
+    color: var(--background0)
+  }
+
+  #prompt-guest {
+    color: var(--red)
+  }
+  #prompt-domain {
+    color: var(--peach);
+  }
+
   @media (max-width: 700px) {
     .suggestions-list {
       font-size: 25px;
