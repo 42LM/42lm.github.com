@@ -2,7 +2,7 @@ import { commands, convertUiToName } from "@/utils/command";
 import { selectBox, selectLatestBox } from "@/utils/select";
 
 import { help } from "@/utils/commands/help";
-import { themeSwitch } from "@/utils/commands/themeSwitch";
+import { themeSwitcher } from "@/utils/commands/themeSwitcher";
 import { whoami } from "@/utils/commands/whoami";
 import { error } from "@/utils/commands/error";
 import { ls } from "@/utils/commands/ls";
@@ -171,7 +171,7 @@ input.addEventListener("keydown", (e) => {
       } else if (value.startsWith("social")) {
         social(commandHistorySection, value)
       } else if (value.startsWith("switch")) {
-        themeSwitch()
+        themeSwitcher()
       } else if (value.startsWith("clear")) {
         location.reload();
       // HIDDEN COMMANDS

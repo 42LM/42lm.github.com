@@ -1,7 +1,9 @@
 <row id="welcome" is-="column">
 <div id="header-container">
-<span id="copyright">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
-<br>
+<div>
+  <span id="copyright">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
+  <button id="theme-switch">&#xf050e;</button>
+</div>
 <div is-="tooltip">
   <div is-="tooltip-trigger">
 <pre id="header">
@@ -74,6 +76,18 @@
     padding-left: 10px;
     color: var(--background1);
     font-size: 16px;
+  }
+  #theme-switch {
+    opacity: 0.85;
+    height: 0;
+    cursor: pointer;
+    --button-secondary: var(--peach);
+    --button-primary: none;
+  }
+  #theme-switch:hover {
+    cursor: pointer;
+    --button-secondary: var(--teal);
+    --button-primary: none;
   }
   #secret-message {
     color: var(--background0);

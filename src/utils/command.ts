@@ -7,7 +7,7 @@ export const commands: CommandMapping[] = [
   { ui: '┏ 󰋗  help', name: 'help' },
   { ui: '┣   about me', name: 'about' },
   { ui: '┣   social links', name: 'social' },
-  { ui: '┣ 󰔎  switch theme', name: 'switch' },
+  // { ui: '┣ 󰔎  switch theme', name: 'switch' },
   { ui: '┗   clear screen', name: 'clear' },
 ];
 
