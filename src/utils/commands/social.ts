@@ -17,10 +17,6 @@ export const social = (
   command.classList.add('command')
   container.appendChild(command)
 
-  const header = document.createElement('span');
-  header.textContent = "󰖟 Find me on the web:"
-  container.appendChild(command)
-
   socialElements.forEach((element) => {
     const template = document.createElement('template');
     template.innerHTML = element;
