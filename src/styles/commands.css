@@ -9,6 +9,9 @@
   .command-successful {
     color: var(--green);
   }
+  .command-failed {
+    color: var(--red);
+  }
 
   [is-~='text'] {
     &[variant-='green'] {

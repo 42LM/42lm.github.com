@@ -4,7 +4,6 @@ export const echo = (
 ) => {
   const startTime = performance.now();
 
-  
   const cmdWithoutQuotations = cmd.replace(/["']/g, '');
   const echoParts = cmdWithoutQuotations.split('echo ', 2);
 
