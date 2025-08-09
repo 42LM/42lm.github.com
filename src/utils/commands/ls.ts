@@ -19,7 +19,7 @@ export const ls = (
   container.classList.add('command-content')
 
   const command = document.createElement('span');
-  container.classList.add('command')
+  command.classList.add('command')
   container.appendChild(command)
 
   const grid = document.createElement('div');
