@@ -1,11 +1,47 @@
 @layer utils {
   /* HELP COMMAND */
-  .help-header { 
-    display: flex;
-    justify-content: space-between; 
+  .help-command {
+    padding: 0 0 10px 0; color: var(--background3);
   }
 
+  /* GENERAL */
   .command-content {
     padding: 10px;
+    border-bottom: 1px solid var(--background1);
+  }
+
+  .command-successful {
+    color: var(--green);
+  }
+
+  [is-~='text'] {
+    &[variant-='green'] {
+      color: var(--green);
+    }
+    &[variant-='teal'] {
+      color: var(--teal);
+    }
+    &[weight-='bold'] {
+      font-weight: bold;
+    }
+  }
+
+  [is-~='badge'] {
+    &[variant-='red'] {
+        --badge-color: var(--red);
+        --badge-text: var(--crust);
+    }
+    &[variant-='red-text'] {
+        --badge-color: var(--background1);
+        --badge-text: var(--red);
+    }
+    &[variant-='green'] {
+        --badge-color: var(--green);
+        --badge-text: var(--crust);
+    }
+    &[variant-='blue'] {
+        --badge-color: var(--blue);
+        --badge-text: var(--crust);
+    }
   }
 }

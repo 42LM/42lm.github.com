@@ -4,31 +4,35 @@ export const help = (
 ) => {
   const startTime = performance.now();
 
-  const helpTextElements = [
-    "<span>42LM - Homepage</span><br><br>",
-    "<span>Available Commands:</span><br>",
-    "<span>&nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help about any command</span><br>",
-    "<span>&nbsp;&nbsp;switch&nbsp;&nbsp;&nbsp;Switch dark/light theme</span><br>",
-    "<span>&nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;Clear the screen</span><br><br>",
-    "<span>* Press 'Ctrl+l' to clear the screen.</span>",
-    "<span>* Press 'Ctrl+u' to cut all text from the current cursor position to the beginning of the line.</span>",
-    "<span>* Press 'Escape' to deselect the input field.</span>"
+  const helpElements = [
+    `<span>&#xf059f; 42LM - Homepage</span><br><br>`,
+    `<span is-="text" variant-="green" weight-="bold">Available Commands:</span><br>`,
+    // `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">help</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help about any command</span><br>`, // TODO: implement help for every command e.g. `help switch` ...
+    `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">about</span>&nbsp;&nbsp;&nbsp;&nbsp;Short text about me</span><br>`,
+    `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">social</span>&nbsp;&nbsp;&nbsp;Social media links</span><br>`,
+    `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">switch</span>&nbsp;&nbsp;&nbsp;Switch dark/light theme</span><br>`,
+    `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">clear</span>&nbsp;&nbsp;&nbsp;&nbsp;Clear the screen</span><br><br>`,
+    `<span is-="text" variant-="green" weight-="bold">Keyboard Shortcuts:</span><br>`,
+    `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">Ctrl+l</span>&nbsp;&nbsp;&nbsp;Clear the screen</span>`,
+    `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">Ctrl+u</span>&nbsp;&nbsp;&nbsp;Cut all text from the current cursor position to the beginning of the line</span>`,
+    `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weigth-="bold">Escape</span>&nbsp;&nbsp;&nbsp;Deselect the input field</span>`
     // "<span>Use &quot;[command] help&quot; for more information about a command</span>",
   ];
 
   const container = document.createElement('row');
   container.setAttribute('is-', 'column');
   container.classList.add('command-content')
-  container.style = "border-bottom: 1px solid var(--background1);"
 
   const command = document.createElement('span');
-  command.style = "padding: 0 0 10px 0; color: var(--background3);"
+  command.classList.add('help-command')
   container.appendChild(command)
 
-  helpTextElements.forEach((element) => {
-    const spanElement = document.createElement('span');
-    spanElement.innerHTML = element;
-    container.appendChild(spanElement);
+  helpElements.forEach((element) => {
+    const template = document.createElement('template');
+    template.innerHTML = element;
+    template.content.childNodes.forEach((node) => {
+      container.appendChild(node);
+    });
   });
 
   commandHistorySection.append(container);
@@ -37,5 +41,5 @@ export const help = (
   const elapsedTime = endTime - startTime;
   command.innerHTML = '<span>~ '+
     cmd+
-    ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
+    ' ('+elapsedTime.toFixed(3)+'s) <span class="command-successful"">&#xf42e;</span></span>';
 }
