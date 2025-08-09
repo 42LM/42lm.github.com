@@ -3,38 +3,39 @@ export const pwd = (
   cmd: string,
 ) => {
   const startTime = performance.now();
-
   const path = localStorage.getItem('cd');
+  console.log(path)
 
   const container = document.createElement('row');
   container.setAttribute('is-', 'column');
   container.classList.add('command-content')
-  container.style = "border-bottom: 1px solid var(--background1);"
 
   const command = document.createElement('span');
-  command.style = "padding: 0 0 10px 0; color: var(--background3);"
+  command.classList.add('command')
   container.appendChild(command)
 
-  const spanElement = document.createElement('span');
+  const template = document.createElement('template');
   if (path != "") {
-    spanElement.innerHTML = '<span>'+path+'</span>';
+    template.innerHTML = '<span>'+path+'</span>';
   } else {
-    spanElement.innerHTML = '<span>/</span>';
+    template.innerHTML = '<span>/</span>';
   }
-  container.appendChild(spanElement); 
+  template.content.childNodes.forEach((node) => {
+    container.appendChild(node); 
+  });
 
   commandHistorySection.append(container);
 
   const endTime = performance.now();
   const elapsedTime = endTime - startTime;
-  if (localStorage.getItem('cd').length > 50) {
-    spanElement.innerHTML = '<span>Path too long</span>';
-    command.innerHTML = '<span>~ '+
+  if (path.length > 50) {
+    template.innerHTML = '<span>Path too long</span>';
+    command.innerHTML = '~ '+
       cmd+
-      ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--red)">&#xf467;</span></span>';
+      ' ('+elapsedTime.toFixed(3)+'s) <span class="command-failed">&#xf467;</span>';
   } else {
-    command.innerHTML = '<span>~ '+
+    command.innerHTML = '~ '+
       cmd+
-      ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
+      ' ('+elapsedTime.toFixed(3)+'s) <span class="command-successful">&#xf42e;</span>';
   }
 }

@@ -6,16 +6,16 @@ export const whoami = (
 
   const container = document.createElement('row');
   container.setAttribute('is-', 'column');
-  container.style = "border-bottom: 1px solid var(--background1);"
+  container.classList.add("command-content");
 
   const command = document.createElement('span');
-  command.style = "padding: 10px 0 0 10px; color: var(--background3);"
+  command.classList.add("command");
   container.appendChild(command)
 
   const spanElement = document.createElement('span');
   spanElement.innerHTML = '<span>Chances are you are a human controlled by '+
     getPlatformFromUserAgent(navigator.userAgent)+
-    '</span>';
+    '.</span>';
   spanElement.style = "padding: 10px;"
   container.appendChild(spanElement)
 
@@ -23,9 +23,9 @@ export const whoami = (
 
   const endTime = performance.now();
   const elapsedTime = endTime - startTime;
-  command.innerHTML = '<span>~ '+
+  command.innerHTML = '~ '+
     cmd+
-    ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
+    ' ('+elapsedTime.toFixed(3)+'s) <span class="command-successful">&#xf42e;</span>';
 }
 
 const getPlatformFromUserAgent = (userAgent: string) => {

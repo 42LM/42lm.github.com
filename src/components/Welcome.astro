@@ -48,6 +48,8 @@
   }
 
   #header {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     padding: 0 0 10px 10px;
     background: linear-gradient(
         90deg, 
@@ -118,24 +120,23 @@
 </style>
  
 <script>
-const secretButton = document.getElementById('secret-button') as HTMLInputElement;
-const welcome = document.getElementById('welcome') as HTMLInputElement;
-const promptGuest = document.getElementById('prompt-guest') as HTMLInputElement;
+  const secretButton = document.getElementById('secret-button') as HTMLInputElement;
+  const welcome = document.getElementById('welcome') as HTMLInputElement;
+  const promptGuest = document.getElementById('prompt-guest') as HTMLInputElement;
 
-secretButton.addEventListener("click", () => {
-  if (secretButton.checked) {
-    secretButton.style = "background: var(--red);"
-    promptGuest.innerText = 'admin';
-  }
-});
+  secretButton.addEventListener("click", () => {
+    if (secretButton.checked) {
+      secretButton.style = "background: var(--red);"
+      promptGuest.innerText = 'admin';
+    }
+  });
 
-welcome.addEventListener('click', (event) => {
-  welcome.classList.toggle('selected');
-  event.stopPropagation(); 
-});
+  welcome.addEventListener('click', (event) => {
+    welcome.classList.toggle('selected');
+    event.stopPropagation(); 
+  });
 
-document.addEventListener('click', () => {
-  welcome.classList.remove('selected');
-});
-
+  document.addEventListener('click', () => {
+    welcome.classList.remove('selected');
+  });
 </script>
