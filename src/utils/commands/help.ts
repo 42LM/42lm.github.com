@@ -24,7 +24,7 @@ export const help = (
   container.classList.add('command-content')
 
   const command = document.createElement('span');
-  command.classList.add('help-command')
+  command.classList.add('command')
   container.appendChild(command)
 
   helpElements.forEach((element) => {
@@ -39,7 +39,7 @@ export const help = (
 
   const endTime = performance.now();
   const elapsedTime = endTime - startTime;
-  command.innerHTML = '<span>~ '+
+  command.innerHTML = '~ '+
     cmd+
-    ' ('+elapsedTime.toFixed(3)+'s) <span class="command-successful"">&#xf42e;</span></span>';
+    ' ('+elapsedTime.toFixed(3)+'s) <span class="command-successful"">&#xf42e;</span>';
 }

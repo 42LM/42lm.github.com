@@ -1,15 +1,11 @@
 @layer utils {
-  /* HELP COMMAND */
-  .help-command {
+  .command {
     padding: 0 0 10px 0; color: var(--background3);
   }
-
-  /* GENERAL */
   .command-content {
     padding: 10px;
     border-bottom: 1px solid var(--background1);
   }
-
   .command-successful {
     color: var(--green);
   }
