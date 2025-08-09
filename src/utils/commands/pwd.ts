@@ -3,8 +3,8 @@ export const pwd = (
   cmd: string,
 ) => {
   const startTime = performance.now();
-
   const path = localStorage.getItem('cd');
+  console.log(path)
 
   const container = document.createElement('row');
   container.setAttribute('is-', 'column');
@@ -14,20 +14,22 @@ export const pwd = (
   command.classList.add('command')
   container.appendChild(command)
 
-  const spanElement = document.createElement('span');
+  const template = document.createElement('template');
   if (path != "") {
-    spanElement.innerHTML = '<span>'+path+'</span>';
+    template.innerHTML = '<span>'+path+'</span>';
   } else {
-    spanElement.innerHTML = '<span>/</span>';
+    template.innerHTML = '<span>/</span>';
   }
-  container.appendChild(spanElement); 
+  template.content.childNodes.forEach((node) => {
+    container.appendChild(node); 
+  });
 
   commandHistorySection.append(container);
 
   const endTime = performance.now();
   const elapsedTime = endTime - startTime;
-  if (localStorage.getItem('cd').length > 50) {
-    spanElement.innerHTML = '<span>Path too long</span>';
+  if (path.length > 50) {
+    template.innerHTML = '<span>Path too long</span>';
     command.innerHTML = '~ '+
       cmd+
       ' ('+elapsedTime.toFixed(3)+'s) <span class="command-failed">&#xf467;</span>';

@@ -6,26 +6,27 @@ export const rm = (
   const secretButton = document.getElementById('secret-button') as HTMLInputElement;
 
   const rmTextElements = [
-    '<span is-="spinner" variant-="dots"></span> <span>Deleting everything... <span style="color: var(--background1);">not</span></span>',
+    '<span><span is-="spinner" variant-="dots"></span> <span>Deleting everything... <span style="color: var(--background1);">not</span></span></span>',
   ];
 
   const container = document.createElement('row');
   container.setAttribute('is-', 'column');
   container.classList.add('command-content')
-  container.style = "border-bottom: 1px solid var(--background1);"
 
   const command = document.createElement('span');
-  command.style = "padding: 0 0 10px 0; color: var(--background3);"
+  command.classList.add('command')
   container.appendChild(command)
 
   rmTextElements.forEach((element) => {
-    const spanElement = document.createElement('span');
+    const template = document.createElement('template');
     if (secretButton.checked) {
-      spanElement.innerHTML = element;
+      template.innerHTML = element;
     } else {
-      spanElement.innerHTML = '<span>Deletion not allowed as \'guest\' user</span>';
+      template.innerHTML = '<span>Deletion not allowed as \'guest\' user</span>';
     }
-    container.appendChild(spanElement); 
+    template.content.childNodes.forEach((node) => {
+      container.appendChild(node); 
+    });
   });
 
   commandHistorySection.append(container);
@@ -34,12 +35,12 @@ export const rm = (
   const elapsedTime = endTime - startTime;
   
   if (secretButton.checked) {
-    command.innerHTML = '<span>~ '+
+    command.innerHTML = '~ '+
       cmd+
-      ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--green)">&#xf42e;</span></span>';
+      ' ('+elapsedTime.toFixed(3)+'s) <span class="command-successful">&#xf42e;</span>';
   } else {
-    command.innerHTML = '<span>~ '+
+    command.innerHTML = '~ '+
       cmd+
-      ' ('+elapsedTime.toFixed(3)+'s) <span style="color: var(--red)">&#xf467;</span></span>';
+      ' ('+elapsedTime.toFixed(3)+'s) <span class="command-failed">&#xf467;</span>';
   }
 }
