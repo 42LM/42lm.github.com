@@ -2,12 +2,12 @@ const mobileMediaQuery = window.matchMedia('(max-width: 775px)');
 
 // Update the input placeholder of the command line according to screen size.
 export const updateInputPlaceholder = () => {
-  const cmdline = document.getElementById("cmdline") as HTMLInputElement;
+  const input = document.getElementById("cmdline") as HTMLInputElement;
 
   if (mobileMediaQuery.matches) {
-    cmdline.setAttribute('placeholder', 'Click here');
+    input.setAttribute('placeholder', 'Click here');
   } else {
-    cmdline.setAttribute('placeholder', 'Start typing or click here');
+    input.setAttribute('placeholder', 'Start typing or click here');
   }
 }
 
