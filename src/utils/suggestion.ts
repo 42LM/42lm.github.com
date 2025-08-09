@@ -11,7 +11,6 @@ import { rm } from "@/utils/commands/rm";
 import { echo } from "@/utils/commands/echo";
 import { cd } from "@/utils/commands/cd";
 import { social } from "@/utils/commands/social";
-import { about } from "@/utils/commands/about";
 
 const suggestionsList = document.getElementById('suggestions-list') as HTMLInputElement;
 const input = document.getElementById('cmdline') as HTMLInputElement;
@@ -153,7 +152,7 @@ input.addEventListener("keydown", (e) => {
         !value.startsWith("switch") &&
         !value.startsWith("clear") &&
         !value.startsWith("social") &&
-        !value.startsWith("about")
+        !value.startsWith("whoami")
     ) {
       e.preventDefault();
       input.value = convertUiToName(suggestionItems[selectedSuggestionIndex].textContent, commands);
@@ -166,12 +165,10 @@ input.addEventListener("keydown", (e) => {
       // COMMANDS
       if (value.startsWith("help")) {
         help(commandHistorySection, value)
-      } else if (value.startsWith("about")) {
-        about(commandHistorySection, value)
+      } else if (value.startsWith("whoami") || value.startsWith("who am")) {
+        whoami(commandHistorySection, value)
       } else if (value.startsWith("social")) {
         social(commandHistorySection, value)
-      } else if (value.startsWith("switch")) {
-        themeSwitcher()
       } else if (value.startsWith("clear")) {
         location.reload();
       // HIDDEN COMMANDS
@@ -185,8 +182,8 @@ input.addEventListener("keydown", (e) => {
         pwd(commandHistorySection, value)
       } else if (value.startsWith("rm")) {
         rm(commandHistorySection, value)
-      } else if (value.startsWith("whoami")) {
-        whoami(commandHistorySection, value)
+      } else if (value.startsWith("switch")) {
+        themeSwitcher()
       } else {
         error(commandHistorySection, value)
       }
