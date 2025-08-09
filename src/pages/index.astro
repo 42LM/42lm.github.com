@@ -134,7 +134,8 @@ import Welcome from '@/components/Welcome.astro';
 </style>
 
 <script>
-  // TODO: refactor :p
+  import { selectBox, selectLatestBox } from "@/utils/select";
+
   import { help } from "@/utils/commands/help";
   import { themeSwitch } from "@/utils/commands/themeSwitch";
   import { whoami } from "@/utils/commands/whoami";
@@ -202,43 +203,8 @@ import Welcome from '@/components/Welcome.astro';
   mobileMediaQuery.addEventListener('change', updatePrompt);
   desktopMediaQuery.addEventListener('change', updatePrompt);
 
-  // Select the latest ASCII box automatically
-  const selectLatest = () => {
-    const commandHistory = document.getElementById('command-history') as HTMLInputElement;
-    const selectableChildren = Array.from(commandHistory.children).slice(2);
-
-    const welcome = document.getElementById('welcome') as HTMLInputElement;
-    if (selectableChildren.length === 0) {
-      welcome.classList.toggle('selected');
-    } else {
-      welcome.classList.remove('selected');
-    }
-
-    for (let i = 0; i < selectableChildren.length; i++) {
-        if (i === selectableChildren.length - 1) {
-          selectableChildren[i].classList.toggle('selected');
-        } else {
-          selectableChildren[i].classList.remove('selected');
-        }
-    }
-  }
   // Call directly to check/select the welcome ascii box
-  selectLatest();
-
-  // Select ASCII boxes
-  const selectBox = () => {
-    const commandHistory = document.getElementById('command-history') as HTMLInputElement;
-    const selectableChildren = Array.from(commandHistory.children).slice(1);
-
-    for (const child of selectableChildren) {
-      if (!child.classList.contains('event')) {
-        child.addEventListener('click', () => {
-          child.classList.toggle('selected');
-        });
-        child.classList.add('event')
-      }
-    }
-  }
+  selectLatestBox();
 
   let selectedSuggestionIndex = -1;
 
@@ -368,7 +334,7 @@ import Welcome from '@/components/Welcome.astro';
 
         // make new command history content selectable
         selectBox();
-        selectLatest();
+        selectLatestBox();
         // clear the cmdline input field
         cmdline.value = ''
         // deselect (remove focus)
