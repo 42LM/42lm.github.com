@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/Navbar.astro';
 ---
 
 <style is:global>
@@ -7,5 +8,10 @@ import Layout from '@/layouts/Layout.astro';
 </style>
 
 <Layout>
+  <Navbar></Navbar>
   <slot />
 </Layout>
+
+<script>
+  import '../utils/suggestion.ts';
+</script>

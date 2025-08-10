@@ -1,0 +1,128 @@
+<nav is-="column">
+  <row id="links">
+    <row style="padding-bottom: 5px;">
+
+      <div is-="tooltip">
+        <div is-="tooltip-trigger">
+          <button class="nav-button-default">
+            <a href="/">&#xf02dc;&nbsp;</a>
+            <!-- <span>Home</span> -->
+          </button>
+        </div>
+        <div is-="tooltip-content" position-="bottom baseline-left">
+          <p>Return to the command terminal</p>
+        </div>
+      </div>
+
+      <div is-="tooltip">
+        <div is-="tooltip-trigger">
+          <button id="theme-switch" class="nav-button-default">
+            <span>&#xf050e;&nbsp;</span>
+            <!-- <span>Dark/Light</span> -->
+          </button>
+        </div>
+        <div class="tooltip-content" is-="tooltip-content" position-="bottom baseline-left">
+          <p>Switch dark/light theme</p>
+        </div>
+      </div>
+
+    </row>
+    
+    <!-- <div is-="tooltip"> -->
+    <!--   <div is-="tooltip-trigger"> -->
+    <!--     <button id="search-button" class="nav-button" size-="small"> -->
+    <!--       <span>&#xea6d;</span> -->
+    <!--       <span>Search</span> -->
+    <!--     </button> -->
+    <!--   </div> -->
+    <!--   <div is-="tooltip-content" position-="bottom baseline-left"> -->
+    <!--     <p>Search things</p> -->
+    <!--   </div> -->
+    <!-- </div> -->
+  </row>
+</nav>
+
+<style>
+  button {
+    align-items: normal;
+  }
+
+  nav {
+    background-color: var(--crust);
+    position: sticky;
+    top: 0;
+    /* border: 5px double var(--background1); */
+    border-bottom: 1px solid var(--background1);
+    --box-border-color: var(--background0);
+    z-index: 2;
+  }
+
+  .nav-button-default {
+    font-size: 25px;
+    --button-secondary: var(--foreground2);
+    height: 0;
+    cursor: pointer;
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      cursor: pointer;
+      --button-secondary: var(--red);
+    }
+  }
+
+  #links {
+    /* color: var(--background1); */
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      display: inline-flex;
+      gap: 1ch;
+      text-decoration: none;
+      color: var(--foreground2);
+
+      &:focus,
+      &:hover {
+        color: var(--red);
+        /* text-decoration: underline; */
+      }
+    }
+  }
+
+  @media (max-width: 84ch) {
+    #links {
+      gap: 1ch;
+
+      a {
+        background-color: var(--background1);
+        padding: 0 1ch;
+        span:last-of-type {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 54ch) {
+    .nav-button-default {
+      font-size: 30px;
+    }
+    nav {
+      align-items: normal;
+      gap: 10px;
+    }
+    .nav-button span:last-of-type {
+      display: none;
+    }
+  }
+
+  @media (max-width: 44ch) {
+    nav {
+      flex-direction: column;
+      row {
+        justify-content: space-around;
+      }
+    }
+  }
+</style>
