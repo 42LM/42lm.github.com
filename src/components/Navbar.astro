@@ -5,8 +5,10 @@
       <div is-="tooltip">
         <div is-="tooltip-trigger">
           <button class="nav-button-default">
-            <a href="/"><span>&#xf02dc;</span></a>
-            <span></span>
+            <a class="nav-button-default" href="/">
+              <span>&#xf02dc;</span>
+              <span></span>
+            </a>
             <!-- <span>Home</span> -->
           </button>
         </div>
@@ -93,8 +95,12 @@
   }
 
   @media (max-width: 84ch) {
+    .nav-button-default {
+      font-size: 30px;
+    }
     #links {
       gap: 1ch;
+      /* justify-content: center; */
 
       a {
         background-color: var(--background1);
