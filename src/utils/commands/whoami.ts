@@ -4,20 +4,26 @@ export const whoami = (
 ) => {
   const startTime = performance.now();
 
+  const aboutElements = [
+    "<span>Hey &#xf1821;, I'm Lukas aka <strong>Luke</strong>,</span>",
+    "<span>senior software engineer who is surfing the waves &#xf1746; of the vast IT ocean.</span>",
+  ];
+
   const container = document.createElement('row');
   container.setAttribute('is-', 'column');
-  container.classList.add("command-content");
+  container.classList.add('command-content')
 
   const command = document.createElement('span');
-  command.classList.add("command");
+  command.classList.add('command')
   container.appendChild(command)
 
-  const spanElement = document.createElement('span');
-  spanElement.innerHTML = '<span>Chances are you are a human controlled by '+
-    getPlatformFromUserAgent(navigator.userAgent)+
-    '.</span>';
-  spanElement.style = "padding: 10px;"
-  container.appendChild(spanElement)
+  aboutElements.forEach((element) => {
+    const template = document.createElement('template');
+    template.innerHTML = element;
+    template.content.childNodes.forEach((node) => {
+      container.appendChild(node);
+    });
+  });
 
   commandHistorySection.append(container);
 
@@ -26,13 +32,4 @@ export const whoami = (
   command.innerHTML = '~ '+
     cmd+
     ' ('+elapsedTime.toFixed(3)+'s) <span class="command-successful">&#xf42e;</span>';
-}
-
-const getPlatformFromUserAgent = (userAgent: string) => {
-    if (userAgent.includes('Win')) return 'Windows';
-    if (userAgent.includes('Mac')) return 'macOS';
-    if (userAgent.includes('Linux')) return 'Linux';
-    if (userAgent.includes('Android')) return 'Android';
-    if (userAgent.includes('iPhone') || userAgent.includes('iPad')) return 'iOS';
-    return 'Unknown';
 }

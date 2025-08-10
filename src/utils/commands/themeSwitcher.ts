@@ -1,4 +1,6 @@
-export const themeSwitch = () => {
+const themeSwitch = document.getElementById("theme-switch") as HTMLInputElement;
+
+export const themeSwitcher = () => {
   const theme = document.getElementById("theme") as HTMLInputElement;
   const currentTheme = theme.getAttribute('data-webtui-theme');
 
@@ -8,3 +10,5 @@ export const themeSwitch = () => {
     theme.setAttribute("data-webtui-theme", "catppuccin")
   }
 }
+
+themeSwitch.addEventListener("click", themeSwitcher)

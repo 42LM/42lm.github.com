@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Welcome from '@/components/Welcome.astro';
+import Navbar from '@/components/Navbar.astro';
 ---
 
 <Layout>
+  <Navbar></Navbar>
+
   <row is-="column">
     <div id="command-history">
       <Welcome></Welcome>

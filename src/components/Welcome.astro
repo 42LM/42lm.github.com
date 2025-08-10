@@ -1,7 +1,6 @@
 <row id="welcome" is-="column">
 <div id="header-container">
 <span id="copyright">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
-<br>
 <div is-="tooltip">
   <div is-="tooltip-trigger">
 <pre id="header">
@@ -22,7 +21,7 @@
     <span id="quickstart" is-="badge" variant-="blue" >&#xf0313; Type something or &#xf0cfd; click underneath</span></summary>
   </div>
   <div is-="tooltip-content" position-="top baseline-bottom" style="padding: 28px 12px;">
-      <p>Try the command <span is-="badge" variant-="green">ls</span> to see all hidden commands.</p>
+      <p>Try the command <span is-="badge" variant-="green">ls</span> to see all hidden commands</p>
     </div>
 </div>
 
@@ -61,6 +60,7 @@
   }
 
   #welcome {
+    margin-top: 1px; /* because of navbar background */
     padding: 0;
     border-bottom: 1px solid var(--background1);
     padding-bottom: 10px;

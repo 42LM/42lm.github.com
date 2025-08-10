@@ -11,7 +11,7 @@ export const ls = (
     `<span is-="text" variant-="green"> ls</span>`,
     `<span is-="text" variant-="green"> pwd</span>`,
     `<span is-="text" variant-="green"> rm</span>`,
-    `<span is-="text" variant-="green"> whoami</span>`,
+    `<span is-="text" variant-="green"> switch</span>`,
   ];
 
   const container = document.createElement('row');
