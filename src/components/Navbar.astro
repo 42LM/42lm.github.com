@@ -1,24 +1,36 @@
 <nav is-="column">
-  <row id="links">
-    <row style="padding-bottom: 5px;">
+  <row align-="between">
+    <row>
 
       <div is-="tooltip">
         <div is-="tooltip-trigger">
-          <button class="nav-button-default" onclick="window.location.href='/'">
-            <span>&#xf02dc;</span>
-            <!-- <span>Home</span> -->
-          </button>
+          <a href="/">
+            <pre class="nav-item">
+░█░█░█▀█░█▄█░█▀▀
+░█▀█░█░█░█░█░█▀▀
+░▀░▀░▀▀▀░▀░▀░▀▀▀
+            </pre>
+          </a>
         </div>
         <div is-="tooltip-content" position-="bottom baseline-left">
           <p>Return to the command terminal</p>
         </div>
       </div>
 
+<pre class="nav-item-delimiter">
+░░░█
+░▄▀░
+░▀░░
+</pre>
+
       <div is-="tooltip">
         <div is-="tooltip-trigger">
-          <button id="theme-switch" class="nav-button-default">
-            <span>&#xf050e;</span>
-            <!-- <span>Dark/Light</span> -->
+          <button id="theme-switch" size-="small">
+            <pre class="nav-item">
+░▀█▀░█░█░█▀▀░█▄█░█▀▀
+░░█░░█▀█░█▀▀░█░█░█▀▀
+░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
+            </pre>
           </button>
         </div>
         <div class="tooltip-content" is-="tooltip-content" position-="bottom baseline-left">
@@ -28,94 +40,69 @@
 
     </row>
     
-    <!-- <div is-="tooltip"> -->
-    <!--   <div is-="tooltip-trigger"> -->
-    <!--     <button id="search-button" class="nav-button" size-="small"> -->
-    <!--       <span>&#xea6d;</span> -->
-    <!--       <span>Search</span> -->
-    <!--     </button> -->
-    <!--   </div> -->
-    <!--   <div is-="tooltip-content" position-="bottom baseline-left"> -->
-    <!--     <p>Search things</p> -->
-    <!--   </div> -->
-    <!-- </div> -->
+<!--     <div is-="tooltip"> -->
+<!--       <div is-="tooltip-trigger"> -->
+<!--         <button id="theme-switch" size-="small"> -->
+<!--           <pre class="nav-item"> -->
+<!-- ░█▀▀░█▀▀░█▀█░█▀▄░█▀▀░█░█ -->
+<!-- ░▀▀█░█▀▀░█▀█░█▀▄░█░░░█▀█ -->
+<!-- ░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀ -->
+<!--           </pre> -->
+<!--         </button> -->
+<!--       </div> -->
+<!--       <div class="tooltip-content" is-="tooltip-content" position-="bottom baseline-left"> -->
+<!--         <p>Search something</p> -->
+<!--       </div> -->
+<!--     </div> -->
+
   </row>
 </nav>
 
 <style>
   button {
-    align-items: normal;
+    display: contents;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   nav {
+    /* padding: 0 10px 0 10px; */
+    height: 35px;
     background-color: var(--crust);
     position: sticky;
     top: 0;
-    /* border: 5px double var(--background1); */
-    border-bottom: 1px solid var(--background1);
-    --box-border-color: var(--background0);
+    border-bottom: 1px solid var(--foreground2);
     z-index: 2;
   }
 
-  .nav-button-default {
-    font-size: 24px;
-    --button-secondary: var(--foreground2);
-    --button-primary: none;
-    height: 0;
+  .nav-item-delimiter {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0;
+    line-height: 1.1;
+    font-size: 10px;
+    background: var(--foreground2);
+    background-clip: text;
+  }
+  .nav-item {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0;
+    line-height: 1.1;
+    font-size: 10px;
+    background: var(--foreground2);
+    background-clip: text;
+  }
+  .nav-item:hover {
+    background: linear-gradient(
+        90deg, 
+        var(--sky) 0%,
+        var(--blue) 50%,
+        var(--sapphire) 100%
+    );
+    background-clip: text;
     cursor: pointer;
-
-    &:focus,
-    &:hover {
-      text-decoration: none;
-      cursor: pointer;
-      --button-secondary: var(--red);
-    }
-  }
-
-  #links {
-    /* color: var(--background1); */
-    justify-content: space-between;
-    align-items: center;
-
-    a {
-      display: inline-flex;
-      gap: 1ch;
-      text-decoration: none;
-      color: var(--foreground2);
-
-      &:focus,
-      &:hover {
-        color: var(--red);
-        /* text-decoration: underline; */
-      }
-    }
-  }
-
-  @media (max-width: 84ch) {
-    .nav-button-default {
-      font-size: 30px;
-    }
-    #links {
-      /* justify-content: center; */
-    }
-  }
-
-  @media (max-width: 54ch) {
-    nav {
-      align-items: normal;
-      gap: 10px;
-    }
-    .nav-button span:last-of-type {
-      display: none;
-    }
-  }
-
-  @media (max-width: 44ch) {
-    nav {
-      flex-direction: column;
-      row {
-        justify-content: space-around;
-      }
-    }
   }
 </style>
