@@ -5,12 +5,11 @@ export const help = (
   const startTime = performance.now();
 
   const helpElements = [
-    `<span>&#xf059f; 42LM - Homepage</span><br><br>`,
+    `<span>&#xf059f; 42LM - Personal website/portfolio</span><br><br>`,
     `<span is-="text" variant-="green" weight-="bold">Available Commands:</span><br>`,
     // `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">help</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help about any command</span><br>`, // TODO: implement help for every command e.g. `help switch` ...
     `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">whoami</span>&nbsp;&nbsp;&nbsp;Short text about me</span><br>`,
     `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">social</span>&nbsp;&nbsp;&nbsp;Social media links</span><br>`,
-    `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">switch</span>&nbsp;&nbsp;&nbsp;Switch dark/light theme</span><br>`,
     `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">clear</span>&nbsp;&nbsp;&nbsp;&nbsp;Clear the screen</span><br><br>`,
     `<span is-="text" variant-="green" weight-="bold">Keyboard Shortcuts:</span><br>`,
     `<span>&nbsp;&nbsp;<span is-="text" variant-="teal" weight-="bold">Ctrl+l</span>&nbsp;&nbsp;&nbsp;Clear the screen</span>`,
