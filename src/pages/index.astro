@@ -7,32 +7,34 @@ import Navbar from '@/components/Navbar.astro';
 <Layout>
   <Navbar></Navbar>
 
-  <row is-="column">
-    <div id="command-history">
-      <Welcome></Welcome>
-    </div>
+  <main>
+    <row is-="column">
+      <div id="command-history">
+        <Welcome></Welcome>
+      </div>
 
-    <row class="custom-dropdown-container">
-      <row align-="between" style="align-items: center">
-        <div>
-          <span>
-            <span id="prompt-guest">guest</span><span id="prompt-at">@</span><span id="prompt-domain">42LM.com</span><span id="prompt-signs">:$ ~</span>
-          </span>
-          <input id="cmdline" placeholder="Start typing or click here" autocomplete="off">
-        </div>
-        <div id="webtui-container" style="font-size: 16px">
-          <a id="webtui" href="https://webtui.ironclad.sh/" target="_blank">
-            <span id="powered-by">Powered by </span>
-            <span is-="badge" variant-="background0">
-                <strong>&lt;/<span style="color: var(--green)">#&gt;</span><span>WebTUI</span></strong>
-                <!-- <strong>&lt;/#&gt;<span>WebTUI</span></strong> -->
+      <row class="custom-dropdown-container">
+        <row align-="between" style="align-items: center">
+          <div>
+            <span>
+              <span id="prompt-guest">guest</span><span id="prompt-at">@</span><span id="prompt-domain">42LM.com</span><span id="prompt-signs">:$ ~</span>
             </span>
-          </a>
-        </div>
+            <input id="cmdline" placeholder="Start typing or click here" autocomplete="off">
+          </div>
+          <div id="webtui-container" style="font-size: 16px">
+            <a id="webtui" href="https://webtui.ironclad.sh/" target="_blank">
+              <span id="powered-by">Powered by </span>
+              <span is-="badge" variant-="background0">
+                  <strong>&lt;/<span style="color: var(--green)">#&gt;</span><span>WebTUI</span></strong>
+                  <!-- <strong>&lt;/#&gt;<span>WebTUI</span></strong> -->
+              </span>
+            </a>
+          </div>
+        </row>
+        <div class="suggestions-list" id="suggestions-list"></div>
       </row>
-      <div class="suggestions-list" id="suggestions-list"></div>
     </row>
-  </row>
+  </main>
 </Layout>
 
 <style is:global>
@@ -138,6 +140,7 @@ import Navbar from '@/components/Navbar.astro';
 
   /* Select ASCII boxes */
   .selected {
+    /* border: 1px solid var(--sky); */
     outline: 1px solid var(--sky);
     background: linear-gradient(
       90deg,

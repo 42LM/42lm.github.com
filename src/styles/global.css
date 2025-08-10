@@ -23,15 +23,10 @@
   html,
   body {
     background-color: var(--crust);
-    padding: 1px;
   }
 
   main {
-    width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background-color: var(--background0);
+    padding: 1px;
   }
 
   a {
