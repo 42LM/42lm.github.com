@@ -6,7 +6,7 @@
         <div is-="tooltip-trigger">
           <button class="nav-button-default">
             <a class="nav-button-default" href="/">
-              <span>&#xf02dc;</span>
+              <span>&#xf02dc; </span>
               <span></span>
             </a>
             <!-- <span>Home</span> -->
@@ -62,8 +62,8 @@
   }
 
   .nav-button-default {
-    font-size: 25px;
     --button-secondary: var(--foreground2);
+    --button-primary: none;
     height: 0;
     cursor: pointer;
 
@@ -99,20 +99,11 @@
       font-size: 30px;
     }
     #links {
-      gap: 1ch;
       /* justify-content: center; */
-
-      a {
-        background-color: var(--background1);
-        padding: 0 1ch;
-      }
     }
   }
 
   @media (max-width: 54ch) {
-    .nav-button-default {
-      font-size: 30px;
-    }
     nav {
       align-items: normal;
       gap: 10px;
