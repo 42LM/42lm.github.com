@@ -21,44 +21,20 @@ import Navbar from '@/components/Navbar.astro';
             </span>
             <input id="cmdline" placeholder="Start typing or click here" autocomplete="off">
           </div>
-          <div id="webtui-container" style="font-size: 16px">
-            <a id="webtui" href="https://webtui.ironclad.sh/" target="_blank">
-              <span id="powered-by">Powered by </span>
-              <span is-="badge" variant-="background0">
-                  <strong>&lt;/<span style="color: var(--green)">#&gt;</span><span>WebTUI</span></strong>
-                  <!-- <strong>&lt;/#&gt;<span>WebTUI</span></strong> -->
-              </span>
-            </a>
-          </div>
         </row>
         <div class="suggestions-list" id="suggestions-list"></div>
       </row>
     </row>
   </main>
+
 </Layout>
 
 <style is:global>
-  #webtui {
-    text-decoration: none;
-    color: var(--crust);
-    opacity: 1;
-  }
-  #webtui-container {
-    opacity: 0.05;
-  }
-  #webtui-container:hover {
-    opacity: 1;
-  }
-
   #cmdline {
     min-width: 0;
     width: 315px;
     background: none;
     padding: 0;
-  }
-
-  #powered-by {
-    color: var(--background0)
   }
 
   #prompt-guest {
@@ -74,11 +50,6 @@ import Navbar from '@/components/Navbar.astro';
     }
     #cmdline {
       width: 150px;
-    }
-  }
-  @media (max-width: 500px) {
-    #powered-by {
-      display: none;
     }
   }
   @media (max-width: 370px) {

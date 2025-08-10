@@ -1,0 +1,50 @@
+<footer is-="column">
+  <span id="copyright">&copy; 2025 Lukas Moeller. All Rights Reserved.</span>
+  <div id="webtui-container">
+    <a id="webtui" href="https://webtui.ironclad.sh/" target="_blank">
+      <span>Powered by </span>
+      <span is-="badge" variant-="background0">
+          <strong>&lt;/<span style="color: var(--green)">#&gt;</span><span>WebTUI</span></strong>
+          <!-- <strong>&lt;/#&gt;<span>WebTUI</span></strong> -->
+      </span>
+      <span style="color: var(--red)"> 󰋑 </span>
+    </a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding-top: 100px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  #copyright {
+    padding-left: 10px;
+    color: var(--background1);
+    font-size: 16px;
+    opacity: 0.4;
+  }
+
+  @media (max-width: 630px) {
+    #copyright {
+      font-size: 10px;
+    }
+    #webtui-container {
+      font-size: 10px;
+    }
+  }
+
+  #webtui-container {
+    opacity: 0.4;
+  }
+  #webtui-container:hover {
+    opacity: 1;
+  }
+  #webtui {
+    text-decoration: none;
+    color: var(--background1);
+    opacity: 1;
+  }
+</style>
